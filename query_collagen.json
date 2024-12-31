@@ -1,0 +1,40 @@
+{
+  "query": {
+    "type": "group",
+    "logical_operator": "and",
+    "nodes": [
+      {
+        "type": "terminal",
+        "service": "text",
+        "parameters": {
+          "operator": "exact_match",
+          "value": "X-RAY DIFFRACTION",
+          "attribute": "exptl.method"
+        }
+      },
+      {
+        "type": "terminal",
+        "service": "text",
+        "parameters": {
+          "operator": "less_or_equal",
+          "value": 2.5,
+          "attribute": "rcsb_entry_info.resolution_combined"
+        }
+      },
+      {
+        "type": "terminal",
+        "service": "full_text",
+        "parameters": {
+          "value": "\"collagen\""
+        }
+      }
+    ]
+  },
+  "request_options": {
+    "paginate": {
+      "start": 0,
+      "rows": 1000
+    }
+  },
+  "return_type": "entry"
+}

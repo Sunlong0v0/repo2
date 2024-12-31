@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=AR+One+Sans&display=swap">
+    <link rel="stylesheet" type="text/css" href="./scripts/pdbe-molstar.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            opacity: 0; /* 初始透明度 */
+            transition: opacity 2s; /* 渐变效果 */
+        }
+        body.loaded {
+            opacity: 1; /* 加载完成后设置为不透明 */
+        }
+
+        .navbar {
+            display: flex; /* 使用 flexbox 布局 */
+            flex-direction: row; /* 横向排列 */
+            align-items: center; /* 垂直居中对齐 */
+            background: linear-gradient(to right, #151d25, #5f85a8); /* 彩色深色渐变 */
+            color: white;
+            padding: 10px;
+            transition: transform 0.5s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%; /* 占据全宽 */
+            z-index: 1000;
+            border-radius: 6px; /* 设置圆角 */
+            height: 24px; /* 设置固定高度 */
+        }
+        .navbar a {
+            font-size: 16px; /* 放大字体 */
+            margin: 0 20px; /* 水平间距 */
+            color: white; /* 链接文字颜色 */
+            text-decoration: none; /* 去掉下划线 */
+            transition: background-color 0.5s, color 0.5s; /* 平滑过渡效果 */
+            white-space: nowrap; /* 禁止换行 */
+        }
+        .navbar a:hover {
+            color: #aed0f3; /* 悬停时的文字颜色 */
+            background-color: transparent; /* 悬停时不改变背景颜色 */
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #384861; /* 三角形颜色 */
+            cursor: pointer;
+            display: none; /* 初始隐藏 */
+        }
+
+        #snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 使鼠标事件不影响雪花 */
+            z-index: 9999; /* 确保在其他元素之上 */
+            display: none; /* 初始隐藏 */
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1em;
+            user-select: none;
+            z-index: 9999; /* 确保雪花在其他元素之上 */
+        }
+
+        #myViewer {
+            width: 100%; /* 使用百分比以适应容器 */
+            height: 660px; /* 固定高度 */
+            margin: 20px 0; /* 上下边距 */
+        }
+
+        #output {
+            white-space: pre-wrap;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px auto; 
+            width: 80%; 
+            min-height: 120px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        #output2 {
+            white-space: pre-wrap;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px auto; 
+            width: 80%; 
+            min-height: 120px; 
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .container1 {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f3eff2;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 1000px; /* 固定容器高度 */
+        }
+
+        .container2 {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .container3 {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color:#f1f8e9 ;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .container4 {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff3e0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .input-container input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 70%;
+            height: 15px; /* 设置高度 */
+        }
+
+        .green_button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #723333;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;             
+            margin-right: 40px;
+        }
+
+        .green_button:hover {
+            background-color: #d3848f;
+        }
+
+        .gray_button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            color: rgb(95, 16, 119);
+            cursor: pointer;
+            min-height: 30px; 
+            display: block;
+            margin-left: 10px; margin-bottom: 0; padding-bottom: 0; margin-right: 10px; padding-top: 0; margin-top: 0;
+        }
+
+        .gray_button:hover {
+            background-color: #ee9be096;
+        }
+
+        .gray_button0 {
+            background-color: rgb(123, 73, 138);
+
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            min-height: 30px; 
+            display: block;
+            margin-left: 10px; margin-bottom: 0; padding-bottom: 0; margin-right: 36px; padding-top: 0; margin-top: 0;
+        }
+
+        .gray_button0:hover {
+            background-color: rgb(182, 128, 199);
+        }
+
+        .gray_button1 {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            color: rgb(95, 16, 119);
+            cursor: pointer;
+            min-height: 30px; 
+            display: block;
+            margin-left: 30px; margin-bottom: 0; padding-bottom: 0; margin-right: 0px; padding-top: 0; margin-top: 0;
+        }
+
+        .gray_button1:hover {
+            background-color: #ee9be096;
+        }
+
+        .gray_button2 {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            color: rgb(95, 16, 119);
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .gray_button2:hover {
+            background-color: #c085b696;
+        }
+
+        .gray_button3 {
+            background-color: rgb(228, 218, 231);
+
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            color: rgb(95, 16, 119);
+            cursor: pointer;
+            min-height: 30px; 
+            display: block;
+            margin-left: 10px; margin-bottom: 0; padding-bottom: 0; margin-right: 20px; padding-top: 0; margin-top: 0;
+        }
+
+        .gray_button3:hover {
+            background-color: #ee9be096;
+        }
+
+        .gray_button4 {
+            background-color: rgb(86, 52, 97);
+
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            min-height: 30px; 
+            display: block;
+            margin-left: 0px; margin-bottom: 0; padding-bottom: 0; margin-right: 46px; padding-top: 0; margin-top: 0;
+        }
+
+        .gray_button4:hover {
+            background-color: rgb(182, 128, 199);
+        }
+
+        .list {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 60px;
+        }
+
+        .list-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-item div {
+            display: flex;
+            align-items: center;
+        }
+
+        .list-item button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .list-item button:hover {
+            color: #4CAF50;
+        }
+
+        .add-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-button:hover {
+            background-color: #45a049;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        .modal-content input, .modal-content button {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .modal-content button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        #chat-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 400px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .user {
+            color: #007bff;
+        }
+
+        .bot {
+            color: #28a745;
+        }
+
+        #status-message {
+            margin-top: 10px;
+            color: #a89393;
+        }
+
+        /* 添加链名输入框样式 */
+        #chainName, #fixedSites, #numEntries, #temperature, #modelSelection {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+    
+        /* 聚焦时的样式 */
+        #chainName:focus, #fixedSites:focus, #numEntries:focus, #temperature:focus, #modelSelection:focus {
+            border-color: #5e9fd2;
+            outline: none;
+            box-shadow: 0 0 8px rgba(94, 159, 210, 0.5);
+        }
+    
+        /* 输入框标签样式 */
+        label {
+            font-weight: normal;
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+    
+        /* 序列条目数量输入框特殊样式，增加高度 */
+        #numEntries {
+            height: 40px;
+        }
+    
+        /* 温度输入框特殊样式，增加高度 */
+        #temperature {
+            height: 40px;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="navbar" id="navbar">
+        <a class="nav-link" href="main.html" style="font-weight: bold;">&lt;- Back</a>
+        <div style="flex-grow: 1; display: flex; justify-content: center;">
+            <a href="#section1" style="font-weight: bold; font-family: 'Arial', sans-serif;">Protein Viewer</a>
+            <a href="#section2" style="font-weight: bold; font-family: 'Arial', sans-serif;">Run Scripts</a>
+            <a href="#section3" style="font-weight: bold; font-family: 'Arial', sans-serif;">Bio-Websites</a>
+            <a href="#section4" style="font-weight: bold; font-family: 'Arial', sans-serif;">Chat with AI</a>
+        </div>
+        <a id="toggleSnow" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 32px; cursor: pointer;">❄</a>
+    </div>
+
+
+    <!-- <div class="navbar" id="navbar">
+        <a class="nav-link" href="main.html" style="font-weight: bold;">&lt;- Back</a>
+
+        <a class="nav-link" style="visibility: hidden; width: 200px; margin: 10px 0;">占位按钮</a>
+        <a href="#section1" style="font-weight: bold; font-family: 'Arial', sans-serif;">Protein Viewer</a>
+        <a href="#section2" style="font-weight: bold; font-family: 'Arial', sans-serif;">Run Scripts</a>
+        <a href="#section3" style="font-weight: bold; font-family: 'Arial', sans-serif;">Bio-Websites</a>
+        <a href="#section4" style="font-weight: bold; font-family: 'Arial', sans-serif;">Chat with AI</a>
+        <a class="nav-link" style="visibility: hidden; width: 1000px; margin: 10px 0;">占位按钮</a>
+        <a id="toggleSnow" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 32px; cursor: pointer;">❄</a>
+    </div> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+    
+
+    <div id="snowflakes"></div>
+
+    <script>
+        let snowActive = false;
+
+        function createSnowflakes() {
+            const snowflakesContainer = document.getElementById('snowflakes');
+            const numSnowflakes = 100; // 雪花数量
+            
+            for (let i = 0; i < numSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄'; // 雪花符号
+                snowflake.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
+                snowflake.style.fontSize = Math.random() * 10 + 10 + 'px'; // 随机大小
+                snowflakesContainer.appendChild(snowflake);
+
+                // 动画效果
+                snowflake.animate([
+                    { transform: 'translateY(0)' },
+                    { transform: `translateY(${window.innerHeight + 10}px)` }
+                ], {
+                    duration: Math.random() * 3000 + 5000, // 随机下落时间
+                    iterations: Infinity,
+                    easing: 'linear'
+                });
+            }
+        }
+
+        document.getElementById('toggleSnow').addEventListener('click', () => {
+            const snowflakesContainer = document.getElementById('snowflakes');
+            snowActive = !snowActive;
+
+            if (snowActive) {
+                snowflakesContainer.style.display = 'block'; // 显示雪花
+                createSnowflakes();
+                document.getElementById('toggleSnow').style.transition = 'transform 12s';
+                document.getElementById('toggleSnow').style.transform += ' rotate(720deg)'; // 转圈效果
+            } else {
+                snowflakesContainer.style.display = 'none'; // 隐藏雪花
+                while (snowflakesContainer.firstChild) {
+                    snowflakesContainer.removeChild(snowflakesContainer.firstChild); // 移除所有雪花
+                }
+                toggleSnowButton.style.transition = 'transform 0.5s';
+                toggleSnowButton.style.transform = 'rotate(0deg)'; // 恢复位置
+            }
+        });
+    </script>
+
+
+    <div class="container1" id="section1">
+        <h1 style="color: #57195f;">Protein Viewer</h1>
+        <div class="container">
+            <div class="input-container">
+                <button class="gray_button4"  id="ResetButton">Reset</button>
+                <input type="text" id="pdbInput" placeholder="Input PDB or Uniprot ID" style="display: inline-block; max-width: 160px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <button class="gray_button0"  id="FetchButton">Fetch</button>
+                
+                <button class="gray_button"  id="HighlightButton">Highlight</button>
+                <button class="gray_button" onclick="viewerInstance.visual.visibility({ water: false })">Hide Water</button>
+                <button class="gray_button" onclick="viewerInstance.visual.visibility({ water: true })">Show Water</button>
+                <select class="gray_button" id="ShowButton" style="font-size: 16px;">
+                    <option disabled selected>Show as</option>
+                    <option value="cartoon">SS</option>
+                    <option value="rainbow">rainbow</option>
+                    <option value="volume">volume</option>
+                    <option value="line">line</option>
+                    <option value="ball-and-stick">ball&stick</option>
+                    <option value="point">point</option>
+                    <option value="molecular-surface">molecular-surface</option>
+                    <option value="alphafold">alphafold</option>
+                </select>
+                <button class="gray_button3"  id="ToolkitsButton">Toolkits</button>
+            </div>
+
+            <div class="input-container">
+                <button class="gray_button" onclick="viewerInstance.visual.select({ data: [{ struct_asym_id: 'A', color: { r: 0, g: 255, b: 0 }, focus: true }]})">Chain A</button>
+                <button class="gray_button" onclick="viewerInstance.visual.select({ data: [{ struct_asym_id: 'B', color: { r: 255, g: 0, b: 255}, focus: true }]})">Chain B</button>
+
+                <button class="gray_button" onclick="viewerInstance.canvas.setBgColor({ r: 255, g: 255, b: 255 })">White</button>
+                <button class="gray_button" onclick="viewerInstance.canvas.setBgColor({ r: 220, g: 236, b: 240 })">Gray</button>
+                <button class="gray_button" onclick="viewerInstance.canvas.setBgColor({ r: 0, g: 0, b: 0 })">Black</button>
+                <button id="rotateButton" class="gray_button">Rotate</button>
+                <button class="gray_button" onclick="viewerInstance.canvas.toggleExpanded(true)">⛶</button>
+            </div>
+
+            <div class="container">
+                <!-- Molstar container -->
+                <div id="myViewer"></div>
+                <script type="text/javascript" src="./scripts/pdbe-molstar-plugin.js"></script>
+
+                <script>
+                    let controlsHidden = true; 
+                    const viewerInstance = new PDBeMolstarPlugin();
+                    const options = {
+                        moleculeId: '1cbs',
+                        bgColor: 'white' ,
+                        visualStyle: { type:'line', color: 'secondary-structure' },
+                        lighting: 'flat', // flat | matte | glossy | metallic | plastic
+
+                        pdbeLink: true,
+                        hideControls: true,
+                        sequencePanel: true,
+                        loadingOverlay: true,
+                        landscape: true,
+                        reactive: true,
+                    };
+                    const viewerContainer = document.getElementById('myViewer');
+                    viewerInstance.render(viewerContainer, options);
+
+
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const rotateButton = document.getElementById('rotateButton');
+                        
+                        rotateButton.addEventListener('click', () => {
+                            if (viewerInstance && viewerInstance.visual) {
+                                viewerInstance.visual.toggleSpin(); // 调用旋转函数
+                            } else {
+                                console.error('Viewer instance or visual is not defined.');
+                            }
+                        });
+                        rotateButton.click();
+                    });
+
+                    document.getElementById('HighlightButton').addEventListener('click', () => {
+                        const newOptions = { ...options,               
+                            selection: {
+                            data: [
+                                {
+                                struct_asym_id: 'A',
+                                start_residue_number: 1,
+                                end_residue_number: 2000,
+                                color: '#3498db',
+                                },
+                                {
+                                struct_asym_id: 'B',
+                                color: '#a57bca',
+                                },
+                            ],
+                            nonSelectedColor: '#e3f2fd',
+                            },
+                        }; 
+                        viewerInstance.render(viewerContainer, newOptions);
+                    });
+
+                    document.getElementById('ShowButton').addEventListener('change', (event) => {
+                        const selectedValue = event.target.value; 
+                        let newOptions;
+
+                        if (selectedValue === "cartoon") {
+                            newOptions = { 
+                                moleculeId: options.moleculeId,
+                                customData: options.customData,                
+                                bgColor: 'white',
+                                visualStyle: { type: 'cartoon', color: 'secondary-structure' },
+                                hideControls: true,
+                                sequencePanel: true,
+                                loadingOverlay: true,
+                                landscape: true,
+                                reactive: true,
+                            };
+                        } else if (selectedValue === "rainbow") {
+                            newOptions = { 
+                                moleculeId: options.moleculeId,
+                                customData: options.customData,                
+                                bgColor: 'white',
+                                visualStyle: { type: 'cartoon', color: 'sequence-id' },
+                                hideControls: true,
+                                sequencePanel: true,
+                                loadingOverlay: true,
+                                landscape: true,
+                                reactive: true,
+                            };
+                        } else if (selectedValue === "volume") {
+                            newOptions = { 
+                                moleculeId: options.moleculeId,
+                                customData: options.customData,                
+                                bgColor: 'white',
+                                visualStyle: { type:'gaussian-volume', color: 'illustrative' },
+                                hideControls: true,
+                                sequencePanel: true,
+                                loadingOverlay: true,
+                                landscape: true,
+                                reactive: true,
+                            };
+                        } else if (selectedValue === "line") {
+                            newOptions = { 
+                                moleculeId: options.moleculeId,
+                                customData: options.customData,                
+                                bgColor: 'white',
+                                visualStyle: { type:'line', color: 'illustrative' },
+                                hideControls: true,
+                                sequencePanel: true,
+                                loadingOverlay: true,
+                                landscape: true,
+                                reactive: true,
+                            };
+                        } else if (selectedValue === "ball-and-stick") {
+                            newOptions = { 
+                                moleculeId: options.moleculeId,
+                                customData: options.customData,                
+                                bgColor: 'white',
+                                visualStyle: { type:'ball-and-stick', color: 'illustrative' },
+                                hideControls: true,
+                                sequencePanel: true,
+                                loadingOverlay: true,
+                                landscape: true,
+                                reactive: true,
+                            };
+                        } else if (selectedValue === "point") {
+                            newOptions = { 
+                                moleculeId: options.moleculeId,
+                                customData: options.customData,                
+                                bgColor: 'white',
+                                visualStyle: { type:'point', color: 'illustrative' },
+                                hideControls: true,
+                                sequencePanel: true,
+                                loadingOverlay: true,
+                                landscape: true,
+                                reactive: true,
+                            };
+                        }  else if (selectedValue === "molecular-surface") {
+                            newOptions = { 
+                                moleculeId: options.moleculeId,
+                                customData: options.customData,                
+                                bgColor: 'white',
+                                visualStyle: { type:'molecular-surface', color: 'illustrative' },
+                                hideControls: true,
+                                sequencePanel: true,
+                                loadingOverlay: true,
+                                landscape: true,
+                                reactive: true,
+                            };
+                        }  else if (selectedValue === "alphafold") {
+                            newOptions = { 
+                                moleculeId: options.moleculeId,
+                                customData: options.customData,                
+                                bgColor: 'white',
+                                hideControls: true,
+                                sequencePanel: true,
+                                loadingOverlay: true,
+                                landscape: true,
+                                reactive: true,
+                                alphafoldView: true,
+                            };
+                        }
+                        viewerInstance.render(viewerContainer, newOptions);
+                    });
+
+                    document.getElementById('ResetButton').addEventListener('click', () => {
+                        moleculeId = options.moleculeId
+                        customData = options.customData
+                        const newOptions = { 
+                            moleculeId : moleculeId,
+                            customData : customData,                
+                            bgColor: 'white',
+                            visualStyle: { type:'line', color: 'secondary-structure' },
+                            hideControls: true,
+                            sequencePanel: true,
+                            loadingOverlay: true,
+                            landscape: true,
+                            reactive: true,
+                            }; 
+                        viewerInstance.render(viewerContainer, newOptions);
+                        const showButton = document.getElementById('ShowButton');
+                        showButton.selectedIndex = 0;
+                    });
+
+                    document.getElementById('ToolkitsButton').addEventListener('click', () => {
+                        controlsHidden = !controlsHidden;
+                        const newOptions = { ...options, hideControls: controlsHidden };
+                        viewerInstance.render(viewerContainer, newOptions);
+                    });
+
+                    document.getElementById('FetchButton').addEventListener('click', () => {
+                        const pdbId = document.getElementById('pdbInput').value.trim().toUpperCase();
+                        if (pdbId.length > 4) {
+                            options.customData = {
+                                url: 'https://alphafold.ebi.ac.uk/files/AF-' + pdbId + '-F1-model_v1.cif',
+                                format: 'cif', 
+                                binary: false, 
+                            };
+                            options.pdbeLink = false
+                        } else {
+                            options.moleculeId = pdbId.toLowerCase();
+                            delete options.customData; 
+                            options.pdbeLink = true
+                        }
+                        viewerInstance.render(viewerContainer, options);
+                    });
+
+                    document.getElementById('pdbInput').addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter') {
+                            document.getElementById('FetchButton').click();
+                        }
+                    });
+
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container2" id="section2">
+        <h1 style="color: #19245f;">Run Scripts</h1>
+
+        <div class="container">
+            <div style="color: #836b6b; font-size: 20px">Relax the protein structure</div><br>                <br>
+
+            <form id="uploadFile" enctype="multipart/form-data">
+                <label for="exampleInputFile" class="font-weight-light">File input</label> 
+                <input type="file" id="exampleInputFile" name="pdbFile" class="" required> 
+                <button type="submit" class="gray_button2">Submit</button>
+                <button type="button" id="run_script" class="gray_button2" disabled>Run Script</button>
+                <button type="button" id="download_result" class="gray_button2" disabled>Download Result</button>
+            </form>
+            <div id="status-message"></div>
+            <div id="script-status"></div>
+        </div>
+
+        <div class="container">
+            <div style="color: #836b6b; font-size: 20px">Use ProteinMPNN/ SolubleMPNN/ HydraMPNN to obtain stable or soluble mutant sequences of proteins</div><br>
+            <form id="uploadFileProteinMPNN" enctype="multipart/form-data">
+                <br>
+                    <p>
+                        <label for="chainName">Design Chain Name (e.g., A B):</label>
+                        <input type="text" id="chainName" name="chainName"  value="A" > 
+                    </p>
+                    <p>
+                        <label for="fixedSites">Fixed Sites (e.g., 1 2 3 4 5 6 7 8 23 25, 10 11 12 13):</label>
+                        <input type="text" id="fixedSites" name="fixedSites" required>
+                    </p>
+                    <p>
+                        <label for="numEntries">Number of Sequence Entries (e.g., 10):</label>
+                        <input type="number" id="numEntries" name="numEntries" value="10">
+                    </p>
+                    <p>
+                        <label for="temperature">Temperature (e.g., 0.2):</label>
+                        <input type="number" step="0.1" id="temperature" name="temperature" value="0.1">
+                    </p>
+                    <p>
+                        <label for="modelSelection">Model Selection (e.g., HydraMPNN):</label>
+                        <select id="modelSelection" name="modelSelection">
+                            <option value="ProteinMPNN">ProteinMPNN</option>
+                            <option value="SolubleMPNN">SolubleMPNN</option>
+                            <option value="HydraMPNN">HydraMPNN</option>
+                        </select>
+                    </p>
+                <br>
+                <label for="exampleInputFile2" class="font-weight-light">File input</label> 
+                <input type="file" id="exampleInputFile2" name="pdbFile" class="" required> 
+                <button type="submit" class="gray_button2">Submit</button>
+                <button type="button" id="run_script2" class="gray_button2" disabled>Run Script</button>
+                <button type="button" id="download_result2" class="gray_button2" disabled>Download Result</button>
+            </form>
+            <div id="status-message2"></div>
+            <div id="script-status2"></div>
+        </div>
+
+        <div class="container">
+            <div style="color: #836b6b; font-size: 20px">Translate the nucleic acid sequence to amino acid sequence</div><br>                 <br>
+            <div class="input-container">
+                <input type="text" id="input-text" placeholder="Enter your input sequence"/>
+                <button id="run-button" class="gray_button1">Run</button>
+            </div>
+            <pre id="output"></pre><br>
+        </div>
+    
+        <div class="container">
+            <div style="color: #836b6b; font-size: 20px">Search for PDB ID</div><br>                <br>
+            <div class="input-container">
+                <input type="text" id="input-text2" placeholder="Enter your input protein name"/>
+                <button id="run-button2" class="gray_button1">Run</button>
+            </div>
+            <pre id="output2"></pre><br>
+        </div>
+    
+    </div>
+            
+    <script>
+        document.getElementById('run-button').addEventListener('click', function() {
+            const inputText = document.getElementById('input-text').value;
+
+            fetch('/run-script', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input: inputText })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    fetchOutput();
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        function fetchOutput() {
+            fetch('/get-output')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').innerText = data.output;
+                })
+                .catch(error => console.error('Error fetching output:', error));
+        }
+    </script>
+    <script>
+        document.getElementById('run-button2').addEventListener('click', function() {
+            const inputText2 = document.getElementById('input-text2').value;
+
+            fetch('/run-script2', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input: inputText2 })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    fetchOutput2();
+                })
+                .catch(error => console.error('Error:', error));
+        });
+        function fetchOutput2() {
+            fetch('/get-output2')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output2').innerText = data.output2;
+                })
+                .catch(error => console.error('Error fetching output:', error));
+        }
+    </script>
+    <script> // rosetta relax
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('uploadFile');
+            const statusMessage = document.getElementById('status-message');
+            const scriptStatus = document.getElementById('script-status');
+            const runScriptButton = document.getElementById('run_script');
+            const downloadButton = document.getElementById('download_result');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const formData = new FormData(form);
+
+                fetch('/submitPDB', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    statusMessage.textContent = data;
+                    runScriptButton.disabled = false; // 提交成功后启用 "Run Script" 按钮
+                    downloadButton.disabled = true; // 提交成功后禁用 "Download Result" 按钮
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+
+            runScriptButton.addEventListener('click', function () {
+                const pdbFileName = document.getElementById('exampleInputFile').files[0].name;
+                if (pdbFileName) {
+                    scriptStatus.textContent = 'Script running...';
+
+                    fetch('/run-script3', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ pdbFileName })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        scriptStatus.textContent = 'Complete!';
+                        statusMessage.textContent = data.message;
+                        downloadButton.disabled = false; // 脚本执行完成后启用 "Download Result" 按钮
+                        // 可以根据需要添加其他逻辑，如显示成功消息或者处理输出
+                    })
+                    .catch(error => {
+                        scriptStatus.textContent = 'Error occurred during script execution.';
+                        console.error('Error:', error);
+                    });
+                } else {
+                    statusMessage.textContent = 'Please upload a file first.';
+                }
+            });
+
+            downloadButton.addEventListener('click', function () {
+                const pdbFileName1 = document.getElementById('exampleInputFile').files[0].name;
+                const pdbFileName = pdbFileName1.slice(0, -4); // 去掉后缀 .pdb
+                if (pdbFileName) {
+                    fetch(`/run-script4/${pdbFileName}`)
+                        .then(response => {
+                            if (response.ok) {
+                                return response.blob();
+                            } else {
+                                throw new Error('Network response was not ok.');
+                            }
+                        })
+                        .then(blob => {
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `${pdbFileName}_0001.pdb`;
+                            document.body.appendChild(a);
+                            a.click();
+                            a.remove();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            statusMessage.textContent = 'Error downloading file.';
+                        });
+                } else {
+                    statusMessage.textContent = 'Please upload a file first.';
+                }
+            });;
+        });
+    </script>
+
+
+
+
+    <script> //proteinmpnn
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadForm = document.getElementById('uploadFileProteinMPNN');
+            const runScriptButton = document.getElementById('run_script2');
+            const downloadResultButton = document.getElementById('download_result2');
+            const statusMessage = document.getElementById('status-message2');
+            const scriptStatus = document.getElementById('script-status2');
+            const exampleInputFile2 = document.getElementById('exampleInputFile2');
+            let proteinName = ''; 
+
+            // 表单提交处理
+            uploadForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // 检查是否选择了文件
+                if (!exampleInputFile2.files.length) {
+                    statusMessage.textContent = '请先选择一个文件！';
+                    return;
+                }
+
+                // 获取表单数据
+                const chainName = document.getElementById('chainName').value;
+                const fixedSites = document.getElementById('fixedSites').value;
+                const numEntries = document.getElementById('numEntries').value;
+                const temperature = document.getElementById('temperature').value;
+                const modelSelection = document.getElementById('modelSelection').value;
+                const pdbFile = exampleInputFile2.files[0];
+
+                // 提取蛋白质名字（假设文件名的前四个字符是蛋白质名字）
+                proteinName = pdbFile.name.slice(0, pdbFile.name.lastIndexOf('.'));
+
+                // 更新状态信息
+                statusMessage.textContent = '正在上传文件...';
+
+                // 创建 FormData 以便上传文件和表单数据
+                const formData = new FormData();
+                formData.append('pdbFile2', pdbFile);
+                formData.append('chainName', chainName);
+                formData.append('fixedSites', fixedSites);
+                formData.append('numEntries', numEntries);
+                formData.append('temperature', temperature);
+                formData.append('modelSelection', modelSelection);
+
+                // 发送到服务器上传文件和表单数据
+                fetch('/uploadPDB2', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        statusMessage.textContent = '文件上传成功。';
+                        runScriptButton.disabled = false;
+                    } else {
+                        statusMessage.textContent = '文件上传失败。';
+                    }
+                })
+                .catch(error => {
+                    statusMessage.textContent = '上传过程中发生错误。';
+                });
+            });
+
+            // 运行脚本
+            runScriptButton.addEventListener('click', function() {
+                const chainName = document.getElementById('chainName').value;
+                const fixedSites = document.getElementById('fixedSites').value;
+                const numEntries = document.getElementById('numEntries').value;
+                const temperature = document.getElementById('temperature').value;
+                const modelSelection = document.getElementById('modelSelection').value;
+
+                // 更新状态
+                scriptStatus.textContent = '正在运行脚本...';
+
+                // 请求服务器运行脚本
+                fetch('/run-script5', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chainName,
+                        fixedSites,
+                        numEntries,
+                        temperature,
+                        modelSelection
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        scriptStatus.textContent = '脚本运行完成！';
+                        downloadResultButton.disabled = false;
+                    } else {
+                        scriptStatus.textContent = '脚本运行失败。';
+                    }
+                })
+                .catch(error => {
+                    scriptStatus.textContent = '运行脚本时发生错误。';
+                });
+            });
+
+            // 下载结果
+            downloadResultButton.addEventListener('click', function() {
+                fetch(`/downloadResult?proteinName=${proteinName}`)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `${proteinName}.fa`; // 使用蛋白质名字作为下载文件名
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                    })
+                    .catch(error => {
+                        scriptStatus.textContent = '下载结果时发生错误。';
+                    });
+            });
+        });
+    </script>
+
+
+
+    
+
+    <div class="container3" id="section3">
+        <h1 style="color: #1b4e16;">Bioinformatics Websites</h1>
+        <div class="input-container">
+            <input type="text" id="searchItem" placeholder="Find items">
+            <button class="gray_button" onclick="searchItem()">Search</button>
+        </div>
+        <div class="container">
+            <ul id="list" class="list">
+                <!-- 列表项将通过 JavaScript 动态添加 -->
+            </ul>
+            <button class="add-button" onclick="openModal()">+</button>
+        </div>
+    </div>
+
+    <script>
+        async function fetchData(query = '') {
+            try {
+                const response = await fetch('/getData_Web' + (query ? `?query=${encodeURIComponent(query)}` : ''));
+                if (!response.ok) throw new Error('网络错误');
+                const data = await response.json();
+                const list = document.getElementById('list');
+                list.innerHTML = '';
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'list-item';
+                    li.innerHTML = `
+                        <span><span style="color: green; font-weight: bold">${item.name}</span>  -  ${item.description}</span>
+                        <div>
+                            <button onclick="editItem('${item.id}')">✏️</button>
+                            <button onclick="deleteItem('${item.id}')">❌</button>
+                            <button onclick="viewPage('${item.url}')">🌐</button>
+                        </div>
+                    `;
+                    list.appendChild(li);
+                });
+            } catch (error) {
+                console.error('获取数据失败:', error);
+                alert('获取数据失败，请检查控制台获取更多信息。');
+            }
+        }
+
+        async function searchItem() {
+            const input = document.getElementById('searchItem');
+            const query = input.value.trim();
+            fetchData(query);
+        }
+
+        async function editItem(id) {
+            try {
+                const newName = prompt('输入新名称:');
+                if (!newName) return;
+
+                const newDescription = prompt('输入新的描述:');
+                if (newDescription === null) return; // 取消操作
+
+                const newUrl = prompt('输入新的 URL:');
+                if (newUrl === null) return; // 取消操作
+
+                await fetch('/editItem', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, name: newName, description: newDescription, url: newUrl })
+                });
+                fetchData();
+            } catch (error) {
+                console.error('编辑条目失败:', error);
+                alert('编辑条目失败，请检查控制台获取更多信息。');
+            }
+        }
+
+        async function deleteItem(id) {
+            try {
+                if (!confirm('确定删除吗？')) return;
+                await fetch('/deleteItem', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id })
+                });
+                fetchData();
+            } catch (error) {
+                console.error('删除条目失败:', error);
+                alert('删除条目失败，请检查控制台获取更多信息。');
+            }
+        }
+
+        function viewPage(url) {
+            window.open(url, '_blank');
+        }
+
+        function openModal() {
+            document.getElementById('addModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('addModal').style.display = 'none';
+        }
+
+        async function addItem() {
+            const name = document.getElementById('newName').value.trim();
+            const description = document.getElementById('newDescription').value.trim();
+            const url = document.getElementById('newUrl').value.trim();
+
+            if (!name || !description || !url) {
+                alert('所有字段都必须填写');
+                return;
+            }
+
+            try {
+                await fetch('/addItem', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, description, url })
+                });
+                closeModal();
+                fetchData();
+            } catch (error) {
+                console.error('添加条目失败:', error);
+                alert('添加条目失败，请检查控制台获取更多信息。');
+            }
+        }
+
+        fetchData();
+    </script>
+   
+   
+    <div class="container4" id="section4">
+        <h1 style="color: #4e1616;">Chat with AI</h1>
+        <div id="chat-box"></div>
+        <textarea id="input" placeholder="Type your message here..."></textarea>
+        <button class="green_button" onclick="clearHistory()">Clear History</button>
+        <button class="green_button" onclick="sendMessage()">Send</button>
+        <ul id="list" class="list">
+            <!-- 列表项将通过 JavaScript 动态添加 -->
+        </ul>
+    </div>
+    
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h2>添加新条目</h2>
+            <input type="text" id="newName" placeholder="输入名称">
+            <input type="text" id="newDescription" placeholder="输入描述">
+            <input type="text" id="newUrl" placeholder="输入网页 URL">
+            <button onclick="addItem()">添加</button>
+            <button onclick="closeModal()">取消</button>
+        </div>
+    </div>
+            
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('input').value;
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div class="message user">You: ${input}</div>`;
+            document.getElementById('input').value = ''; // 清空输入框
+    
+            try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                model: 'llama3.1',
+                messages: [{ role: 'user', content: input }]
+                })
+            });
+    
+            if (!response.body) {
+                throw new Error('No response body');
+            }
+    
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let buffer = '';
+            let completeResponse = '';
+    
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+    
+                buffer += decoder.decode(value, { stream: true });
+    
+                // 处理完整的消息
+                let lineEndIndex;
+                while ((lineEndIndex = buffer.indexOf('\n')) !== -1) {
+                const line = buffer.substring(0, lineEndIndex);
+                buffer = buffer.substring(lineEndIndex + 1);
+    
+                // 解析并显示完整消息
+                try {
+                    const json = JSON.parse(line);
+                    if (json.message && json.message.content) {
+                    completeResponse += json.message.content;
+                    }
+                } catch (e) {
+                    console.error('JSON parse error:', e);
+                    chatBox.innerHTML += '<div class="message bot">Error parsing response</div>';
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                    return;
+                }
+                }
+            }
+    
+            // 显示完整响应
+            if (completeResponse) {
+                chatBox.innerHTML += `<div class="message bot">Bot: ${completeResponse}</div>`;
+            } else {
+                chatBox.innerHTML += `<div class="message bot">Bot: No response available or unexpected response structure.</div>`;
+            }
+            chatBox.scrollTop = chatBox.scrollHeight; // 自动滚动到最新消息
+    
+            } catch (error) {
+            console.error('Error:', error);
+            chatBox.innerHTML += `<div class="message bot">Error occurred: ${error.message}</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+    
+        async function clearHistory() {
+            try {
+            const response = await fetch('/api/clear', { method: 'POST' });
+            const result = await response.json();
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div class="message bot">${result.message}</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (error) {
+            console.error('Error clearing history:', error);
+            }
+        }
+    
+        document.getElementById('input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+            event.preventDefault(); // 阻止默认的回车换行行为
+            sendMessage();
+            }
+        });
+    </script>
+
+
+</body>
+</html>

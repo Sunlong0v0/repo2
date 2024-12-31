@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>LYBio</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <script>/* Pinegrow Interactions, do not remove */ try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id')?document.documentElement.hasAttribute('data-pg-mobile'):(screen.width<1000&&screen.height<1000)){pgcss+='html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}';}else{pgcss+='html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}';}style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}</script>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <!-- 定义网页的交互行为、页面元素的动画效果以及响应式导航栏的样式和行为。 -->
+    <body data-pg-ia-scene='{"smooth":"0","s":"whole","s_t":"top","s_s":"top","e_t":"bottom","e_s":"bottom","pint":"#section4","snap_sel":"section","snap_durmax":"0.5","pag":"e","pag_t":"section","pag_i":"nav .nav-item a","pag_pa":"MakeActive,PlayMoveTile","pag_tc":"55"}' style="padding-top: 55px;">
+        <header class="bg-white" data-pg-dyn-id="did_0">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light"><a class="navbar-brand" href="#" style="font-style: normal; font-weight: bold;">LYBio</a>
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-pg-ia='{"l":[{"name":"PositionTileOnOpen","trg":"click","a":{"l":[{"t":"^nav|.active-tile","l":[{"t":"set","p":0,"d":0,"l":{"autoAlpha":0}},{"t":"tween","p":0.4,"d":0.15,"l":{"pgia":{"play":"MoveTile"}}},{"t":"tween","p":0.55,"d":0.13,"l":{"autoAlpha":1}}]}]},"pdef":"true","rcr":"true"}]}'>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="active-tile" data-pg-ia="{&quot;l&quot;:[{&quot;name&quot;:&quot;MoveTile&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;$.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.28,&quot;l&quot;:{&quot;pgPos&quot;:{&quot;pos&quot;:&quot;center&quot;,&quot;width&quot;:104,&quot;tsel&quot;:&quot;^nav|.nav-item.active a&quot;}}}]}]},&quot;rstr&quot;:&quot;true&quot;}]}"></div>
+                    <ul class="navbar-nav" style="z-index: 1; position: relative;">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_home" data-pg-ia="{&quot;l&quot;:[{&quot;name&quot;:&quot;ScrollOnClick&quot;,&quot;trg&quot;:&quot;click&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^body&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.59,&quot;l&quot;:{&quot;scrollTo&quot;:{&quot;dest&quot;:&quot;${target.href}&quot;}}},{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.59,&quot;l&quot;:{&quot;history.push&quot;:&quot;${target.href}&quot;},&quot;m&quot;:true}]},{&quot;t&quot;:&quot;&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.3,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MakeActive&quot;}}}]},{&quot;t&quot;:&quot;^nav|.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.3,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MoveTile&quot;}}}]}]},&quot;pdef&quot;:&quot;true&quot;},{&quot;name&quot;:&quot;MakeActive&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^nav|.nav-item.active&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;set&quot;,&quot;p&quot;:0,&quot;d&quot;:0,&quot;l&quot;:{&quot;class.remove&quot;:&quot;active&quot;}}]},{&quot;t&quot;:&quot;^.nav-item&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.05,&quot;l&quot;:{&quot;class.add&quot;:&quot;active&quot;}}]},{&quot;t&quot;:&quot;this&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.5,&quot;l&quot;:{&quot;color&quot;:&quot;#f500db&quot;}}],&quot;m&quot;:true}]},&quot;rcr&quot;:&quot;true&quot;},{&quot;name&quot;:&quot;PlayMoveTile&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^nav|.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0.1,&quot;d&quot;:0.4,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MoveTile&quot;}}}]}]},&quot;rstr&quot;:&quot;true&quot;}]}" data-pg-ia-apply="^nav|a[href^=&quot;#&quot;]">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_submit">submit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_server">server</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_share">share</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_examples">examples</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_about">about</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body" href="services.html">services</a>
+                        </li>
+                        <li class="nav-item"></li>
+                    </ul>
+                </div>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <div class="circle" id="userCircle">
+</div> </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#settings">Settings</a>
+                    <a class="dropdown-item" href="#signout" id="logoutButton">Sign Out</a>
+                </div>
+                <script>
+                    // Function to get URL parameter by name
+                    function getParameterByName(name) {
+                        const url = window.location.href;
+                        name = name.replace(/[\[\]]/g, '\\$&');
+                        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                        const results = regex.exec(url);
+                        if (!results) return null;
+                        if (!results[2]) return '';
+                        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                    }
+
+                    // 获取用户名参数
+                    const username = getParameterByName('username');
+
+                    // 获取前两个字母并转换为大写
+                    var initials = username.substring(0, 3).toUpperCase();
+                
+                    // 将初始值设置为.circle元素的内容
+                    document.getElementById('userCircle').innerText = initials;
+                </script>
+                <style>.circle { width: 40px;  /* 圆圈的宽度 */ height: 40px;  /* 圆圈的高度 */ background-color: #0374889f;  /* 圆圈的背景颜色 */ color: white;  /* 字母颜色 */ border-radius: 50%;  /* 使其变成圆形 */ display: flex; align-items: center; justify-content: center; font-weight: bold;  /* 字母加粗 */ position: absolute;  /* 使用绝对定位 */ right: 10px;  /* 距离右侧边缘的距离 */ top: 10px;  /* 距离顶部边缘的距离 */ }</style>
+                <script>
+                document.getElementById('logoutButton').addEventListener('click', function() {
+                    fetch('/logout', {
+                        method: 'POST',
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = 'index.html';
+                        } else {
+                            alert('Logout failed: ' + data.message);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                });
+                </script>
+            </nav>
+        </header>
+        <section style="padding-top: 120px; padding-bottom: 120px; min-height: 300px; color: #ffffff; background-size: cover; background-repeat: no-repeat; background-image: linear-gradient(90deg, #536976, #292E49);" id="section_home" data-pg-ia-scene='{"dir":"a","s":"custom","s_t":"start","s_s":"end","e_t":"end","e_s":"start","l":[{"a":{"l":[{"t":"","l":[{"t":"tween","p":0,"d":1,"l":{"pgia":{"play":"HideContent"}}},{"t":"tween","p":1,"d":8,"l":{"pgia":{"play":"ShowContent","once":1}}},{"t":"tween","p":9,"d":1,"l":{"pgia":{"play":"HideContent"}}}]}]},"p":"scroll","sc_dir":"up_down","rep":"true"}],"smooth":"0"}' data-pg-ia='{"l":[{"name":"ShowContent","trg":"no","a":{"l":[{"t":"h1,h2,p","l":[{"t":"tween","p":0,"d":1,"s":0.5,"l":{"autoAlpha":1}}]}],"desc":"Customize this animation to show the content when the section comes into view."}},{"name":"HideContent","trg":"no","a":{"l":[{"t":"","l":[]}],"desc":"Customize to hide the content when the section goes out of view. Not needed if you want to reveal the content only once. If hiding content, also remove Show Once in Scroll Scene animation."}}]}' data-pg-ia-apply="$section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="display-3" data-pg-ia-hide style="text-align: center;">LiYing BioCompute Platform</h1>
+                        <p class="lead" data-pg-ia-hide style="text-align: center;">An integrated bioinformatics computing platform</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section_submit" style="background-color: #eeeeee;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide="">Submit</h2>
+                        <p data-pg-ia-hide="">Please submit your job here:</p>
+                        <div class="container font-weight-bold" style="width: 80%;background-color: #f0f8ff; height: 500px;border: 2px solid #ccc" ;" data-empty-placeholder">
+                            <div></div>
+                            <div class="form-group">
+                                <label for="formInput7" class="font-weight-bold">Name:</label>                                 
+                                <input type="text" class="form-control" id="formInput7" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput8" class="font-weight-bold">Job name:</label>                                 
+                                <input type="text" class="form-control" id="formInput8" placeholder="Enter job name">
+                            </div>
+                            <b class="">Expected completion time:</b>
+                            <input type="text" class="form-control" id="formInput9" placeholder="Enter time">
+                            <p class=""></p>
+                            <p class=""></p>
+                            <p class=""></p>
+                            <div class="form-group"> 
+                                <label for="formInput10" class="font-weight-bold">Brief description:</label>
+                                <input type="text" class="form-control" id="formInput10" placeholder="Enter description"> 
+                            </div>
+                            <label for="exampleInputFile" class="">Please submit a PPT format file containing detailed task information:</label>
+                            <form role="form" class="">
+                                <div class="form-group">
+                                    <p class=""> <label for="exampleInputFile" class="font-weight-light">File input</label> <input type="file" id="exampleInputFile" name="pptFile" class=""> </p>
+                                    <button type="submit" class="btn btn-primary float-left">Submit</button>
+                                </div>                                 
+                            </form>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const form = document.querySelector('form');                                    
+                                    form.addEventListener('submit', function (event) {
+                                        event.preventDefault();
+                                        const formData = new FormData(form);
+                                        fetch('/submit', {
+                                            method: 'POST',
+                                            body: formData
+                                        })
+                                        .then(response => response.text())
+                                        .then(data => {
+                                            alert(data);
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                        });
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section data-pg-class-style="section" id="section_server">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide>Server</h2>
+                        <p data-pg-ia-hide class="text-justify"></p>
+                        <p data-pg-ia-hide class="text-justify"></p>
+                        <p data-pg-ia-hide class="text-justify text-primary">July 20th, the number of tasks we can still undertake is <b>3</b> and we will update the timing information once a week.</p>
+                        <table class="table"> 
+                            <thead> 
+                                <tr> 
+                                    <th>#</th>
+                                    <th>User</th> 
+                                    <th>Submitter</th> 
+                                    <th>Job name</th> 
+                                    <th>Submi time</th> 
+                                    <th>Status</th> 
+                                </tr>                                 
+                            </thead>                             
+                            <tbody> 
+                                <tr> 
+                                    <th scope="row">1</th> 
+                                    <td>owosl</td> 
+                                    <td>Mark</td> 
+                                    <td>Protein1</td>
+                                    <td>2020.9.1</td> 
+                                    <td>complete</td> 
+                                </tr>                                 
+                                <tr> 
+                                    <th scope="row">2</th>
+                                    <td>username2</td> 
+                                    <td>Jacob</td> 
+                                    <td>Protein2</td>
+                                    <td>2020.9.2</td> 
+                                    <td>running</td> 
+                                </tr>                                 
+                            </tbody>                             
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>#section_chat { background-color: #eeeeee; padding: 20px; height: 300px; overflow-y: auto; margin-bottom: 20px; border: 1px solid #ccc; } #input_area { display: flex; } #input_area input { flex: 1; padding: 10px; border: 1px solid #ccc; } #input_area button { padding: 10px; border: 1px solid #ccc; background-color: #007bff; color: white; cursor: pointer; }</style>
+        <section id="section_share">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-11 col-md-4">
+                        <h2>Share</h2> 
+                        <div id="section_chat">
+</div>
+                        <div id="input_area">
+                            <input type="text" id="chat_input" placeholder="输入文字..." onkeydown="if(event.key === 'Enter') sendMessage()">
+                            <button onclick="sendMessage()">send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>             
+        </section>
+        <script>
+            function sendMessage() {
+                var input = document.getElementById('chat_input');
+                var message = input.value;
+                if (message.trim() !== "") {
+                    var chatSection = document.getElementById('section_chat');
+                    var newMessage = document.createElement('p');
+                    newMessage.textContent = 'username: ' + message;
+                    chatSection.appendChild(newMessage);
+                    input.value = '';
+                    chatSection.scrollTop = chatSection.scrollHeight; // 自动滚动到最下方
+                }
+            }
+        </script>
+        <section id="section_examples">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h2 data-pg-ia-hide="" class="">Examples&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</h2>
+                        <p data-pg-ia-hide="" class="text-justify">1、protein - protein predicting</p>
+                        <p data-pg-ia-hide="" class="text-justify">2、protein - ligands docking</p>
+                        <p data-pg-ia-hide="" class="text-justify">3、</p>
+                    </div>
+                    <img class="img-fluid m-0 p-0 w-1000 w-auto" src="protein.png" alt="">
+                </div>
+            </div>
+        </section>
+        <section id="section_about" style="background-color: #eeeeee;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide="">About</h2>
+                        <p data-pg-ia-hide="" class="text-justify">Our computing platform is based on molecular dynamics simulation, machine learning and other methods to achieve research on biomolecules (like proteins).</p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                        <p data-pg-ia-hide="" class="text-justify">Feel free to email us for any questions.</p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"> <a href="#"> </a> 
+            </div>
+            <div class="col-md-3"> <a href="#"> </a> 
+            </div>
+            <div class="container">
+                <p data-pg-ia-hide class="font-weight-bold text-justify text-primary">This is our workfolw:</p>
+                <img class="w-100 img-thumbnail" src="map.png" alt="">
+            </div>
+        </section>
+        <section id="videoSection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Video</h2>
+                        <video controls width="100%">
+                            <source src="m.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class=" bg-dark pb-3 pt-3 text-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">Created by LiYing Company in 2024. Enjoy!</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="#" class="btn btn-secondary btn-sm" id="backToTopBtn">Back to Top</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var backToTopBtn = document.querySelector('#backToTopBtn');
+                backToTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pgia/lib/pgia.js"></script>
+    </body>
+</html>

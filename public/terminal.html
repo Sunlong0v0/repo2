@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Terminal</title>
+    <style>
+        /* 整体页面样式 */
+        body { 
+            font-family: monospace; /* 使用等宽字体 */
+            background-color: #ffffff; /* 设置页面背景为白色 */
+            color: #000000; /* 默认文本颜色为黑色 */
+            display: flex; 
+            align-items: center; /* 垂直居中 */
+            justify-content: center; /* 水平居中 */
+            height: 100vh; /* 全屏高度 */
+            font-size: 1.1rem; /* 字体大小 */
+            margin: 0; /* 移除默认边距 */
+        }
+
+        /* 终端容器样式 */
+        #terminal-container {
+            width: 80vw; /* 宽度为视口宽度的80% */
+            max-width: 800px; /* 最大宽度为800px */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+            border-radius: 8px; /* 圆角边框 */
+            background-color: #f5f5f5; /* 容器背景色浅灰色 */
+        }
+
+        /* 终端输出区域样式 */
+        #terminal {
+            height: 60vh; /* 高度为视口高度的60% */
+            overflow-y: auto; /* 垂直滚动条 */
+            border: 1px solid #ccc; /* 边框颜色和样式 */
+            padding: 10px; /* 内边距 */
+            white-space: pre-wrap; /* 保留空白字符和换行符 */
+            background-color: #1e1e1e; /* 背景色为深灰色，模拟终端 */
+            color: #ffffff; /* 终端文本颜色为白色 */
+            border-radius: 8px 8px 0 0; /* 圆角边框，上边两个角圆 */
+        }
+
+        /* 输入框样式 */
+        #input {
+            width: 100%; /* 宽度占满容器 */
+            border: none; /* 移除默认边框 */
+            outline: none; /* 移除聚焦时的轮廓 */
+            padding: 10px; /* 内边距 */
+            font-size: 1.1rem; /* 字体大小 */
+            color: #282c34; /* 输入框文本颜色 */
+            background-color: #dbeeff; /* 输入框背景色与容器一致 */
+            border-radius: 0 0 8px 8px; /* 圆角边框，下边两个角圆 */
+            box-sizing: border-box; /* 包括内边距和边框在内的总宽度 */
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal-container">
+        <div id="terminal"></div>
+        <input type="text" id="input" placeholder="输入命令" autofocus>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        const socket = io();
+        const terminal = document.getElementById('terminal');
+        const input = document.getElementById('input');
+
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const command = input.value.trim();
+                if (command) {
+                    terminal.innerHTML += `> ${command}\n`;
+                    socket.emit('command', command);
+                    input.value = '';
+                }
+            }
+        });
+
+        socket.on('output', (data) => {
+            terminal.innerHTML += `${data}\n`;
+            terminal.scrollTop = terminal.scrollHeight; // 滚动到底部
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>LYBio</title>
+        <link rel="icon" href="icon.png" type="image/png">
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <script>/* Pinegrow Interactions, do not remove */ try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id')?document.documentElement.hasAttribute('data-pg-mobile'):(screen.width<1000&&screen.height<1000)){pgcss+='html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}';}else{pgcss+='html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}';}style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}</script>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+
+    <body data-pg-ia-scene='{"smooth":"0","s":"whole","s_t":"top","s_s":"top","e_t":"bottom","e_s":"bottom","pint":"#section4","snap_sel":"section","snap_durmax":"0.5","pag":"e","pag_t":"section","pag_i":"nav .nav-item a","pag_pa":"MakeActive,PlayMoveTile","pag_tc":"55"}' style="padding-top: 55px;">
+        <header class="bg-white" data-pg-dyn-id="did_0">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <style>
+                    @keyframes colorChangeForward {
+                        0% { color: rgb(19, 149, 209); }
+                        100% { color: black; }
+                    }
+                    @keyframes colorChangeBackward {
+                        0% { color: black; }
+                        100% { color: rgb(19, 149, 209); }
+                    }
+                    .color-change-forward {
+                        animation: colorChangeForward 1.5s forwards;
+                    }
+                    .color-change-backward {
+                        animation: colorChangeBackward 1.5s forwards;
+                    }
+                </style>
+                <a class="navbar-brand" href="#" id="lybio" style="font-style: normal; font-weight: bold;">LYBio</a>
+                <script>
+                    let isForward = false;
+                    document.getElementById('lybio').addEventListener('click', function() {
+                        if (isForward) {
+                            this.classList.add('color-change-forward');
+                            this.classList.remove('color-change-backward');
+                        } else {
+                            this.classList.add('color-change-backward');
+                            this.classList.remove('color-change-forward');
+                        }
+                        isForward = !isForward;
+                    });
+                </script>
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-pg-ia='{"l":[{"name":"PositionTileOnOpen","trg":"click","a":{"l":[{"t":"^nav|.active-tile","l":[{"t":"set","p":0,"d":0,"l":{"autoAlpha":0}},{"t":"tween","p":0.4,"d":0.15,"l":{"pgia":{"play":"MoveTile"}}},{"t":"tween","p":0.55,"d":0.13,"l":{"autoAlpha":1}}]}]},"pdef":"true","rcr":"true"}]}'>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="active-tile" data-pg-ia="{&quot;l&quot;:[{&quot;name&quot;:&quot;MoveTile&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;$.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.28,&quot;l&quot;:{&quot;pgPos&quot;:{&quot;pos&quot;:&quot;center&quot;,&quot;width&quot;:104,&quot;tsel&quot;:&quot;^nav|.nav-item.active a&quot;}}}]}]},&quot;rstr&quot;:&quot;true&quot;}]}"></div>
+                    <ul class="navbar-nav" style="z-index: 1; position: relative;">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_home" data-pg-ia="{&quot;l&quot;:[{&quot;name&quot;:&quot;ScrollOnClick&quot;,&quot;trg&quot;:&quot;click&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^body&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.59,&quot;l&quot;:{&quot;scrollTo&quot;:{&quot;dest&quot;:&quot;${target.href}&quot;}}},{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.59,&quot;l&quot;:{&quot;history.push&quot;:&quot;${target.href}&quot;},&quot;m&quot;:true}]},{&quot;t&quot;:&quot;&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.3,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MakeActive&quot;}}}]},{&quot;t&quot;:&quot;^nav|.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.3,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MoveTile&quot;}}}]}]},&quot;pdef&quot;:&quot;true&quot;},{&quot;name&quot;:&quot;MakeActive&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^nav|.nav-item.active&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;set&quot;,&quot;p&quot;:0,&quot;d&quot;:0,&quot;l&quot;:{&quot;class.remove&quot;:&quot;active&quot;}}]},{&quot;t&quot;:&quot;^.nav-item&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.05,&quot;l&quot;:{&quot;class.add&quot;:&quot;active&quot;}}]},{&quot;t&quot;:&quot;this&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.5,&quot;l&quot;:{&quot;color&quot;:&quot;#f500db&quot;}}],&quot;m&quot;:true}]},&quot;rcr&quot;:&quot;true&quot;},{&quot;name&quot;:&quot;PlayMoveTile&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^nav|.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0.1,&quot;d&quot;:0.4,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MoveTile&quot;}}}]}]},&quot;rstr&quot;:&quot;true&quot;}]}" data-pg-ia-apply="^nav|a[href^=&quot;#&quot;]">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_submit">Submit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_server">Server</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_share">Share</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_examples">Examples</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_video">Video</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body" href="services.html">Services</a>
+                        </li>
+                        <li class="nav-item"></li>
+                    </ul>
+                </div>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                    <div class="circle" id="userCircle"></div> 
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                        }
+                        .dropdown-item {
+                            cursor: pointer;
+                            color: rgb(48, 48, 83);
+                            font-family: Arial, sans-serif; /* 设置字体为 Arial */
+                            font-weight: bold; /* 设置字体为加粗 */
+                        }
+                        .dropdown-item:hover {
+                            background-color: rgba(48, 48, 83, 0.1); /* 悬浮时背景色 */
+                            color: rgb(0, 0, 0); /* 悬浮时字体颜色 */
+                        }
+                        #settingsModal {
+                            display: none;
+                            position: fixed;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 300px;
+                            padding: 20px;
+                            background: white;
+                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                            border-radius: 8px;
+                            z-index: 1000;
+                        }
+                        #overlay {
+                            display: none;
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.5);
+                            z-index: 999;
+                        }
+                    </style>
+                
+                    <a class="dropdown-item" id="settingsLink">Settings</a>
+                    
+                    <div id="overlay"></div>
+                    
+                    <div id="settingsModal">
+                        <h2>Your ID</h2>
+                        <p>Username: <span id="usernameDisplay">你的用户名</span></p>
+                        <p>Password: <span id="passwordDisplay">你的密码</span></p>
+                        
+                        <label for="newPassword">新密码:</label>
+                        <input type="password" id="newPassword" placeholder="输入新密码">
+                        <br>
+                        <button id="changePassword">修改密码</button>
+                        <button id="closeButton">关闭</button> 
+                    </div>
+                    
+                    <script>
+                        // 在模态框打开时获取用户名
+                        document.getElementById('settingsLink').addEventListener('click', function(event) {
+                            event.preventDefault();
+
+                            const username = getParameterByName('username'); // 从 URL 获取用户名
+
+                            // 获取用户数据
+                            fetch(`/settings?username=${username}`)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('网络响应不正常');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    // 填充数据
+                                    document.getElementById('usernameDisplay').innerText = data.username;
+                                    document.getElementById('passwordDisplay').innerText = data.password;
+
+                                    // 显示模态框
+                                    document.getElementById('settingsModal').style.display = 'block';
+                                    document.getElementById('overlay').style.display = 'block';
+                                })
+                                .catch((error) => {
+                                    console.error('错误:', error);
+                                });
+                        });
+                    
+                        document.getElementById('closeButton').addEventListener('click', function() {
+                            document.getElementById('settingsModal').style.display = 'none';
+                            document.getElementById('overlay').style.display = 'none';
+                            
+                            // 收起下拉菜单
+                            const dropdownMenu = document.querySelector('.dropdown-menu');
+                            dropdownMenu.style.display = 'none';
+                        });
+                    
+                        document.getElementById('overlay').addEventListener('click', function() {
+                            document.getElementById('settingsModal').style.display = 'none';
+                            document.getElementById('overlay').style.display = 'none';
+                            
+                            // 收起下拉菜单
+                            const dropdownMenu = document.querySelector('.dropdown-menu');
+                            dropdownMenu.style.display = 'none';
+                        });
+                
+                        // 点击下拉按钮的逻辑
+                        document.getElementById('navbarDropdown').addEventListener('click', function(event) {
+                            const dropdownMenu = document.querySelector('.dropdown-menu');
+                            dropdownMenu.style.display = dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '' ? 'block' : 'none';
+                            event.stopPropagation(); // 阻止事件冒泡
+                        });
+
+                        document.getElementById('changePassword').addEventListener('click', function() {
+                            const newPassword = document.getElementById('newPassword').value;
+                            const username = getParameterByName('username'); // 从 URL 获取用户名
+
+                            fetch('/change-password', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ username: username, newPassword: newPassword })
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('网络响应不正常');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log('密码修改成功:', data);
+                                alert('密码修改成功');
+                            })
+                            .catch((error) => {
+                                console.error('错误:', error);
+                                alert('修改密码失败');
+                            });
+                        });
+                    </script>
+                    
+                    <a class="dropdown-item" href="#signout" id="logoutButton">Sign Out</a>
+                </div>
+                <script>
+                    document.getElementById('logoutButton').addEventListener('click', function() {
+                        fetch('/logout', {
+                            method: 'POST',
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                window.location.href = 'index.html';
+                            } else {
+                                alert('Logout failed: ' + data.message);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                    });
+
+                    // Function to get URL parameter by name
+                    function getParameterByName(name) {
+                        const url = window.location.href;
+                        name = name.replace(/[\[\]]/g, '\\$&');
+                        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+                        const results = regex.exec(url);
+                        if (!results) return null;
+                        if (!results[2]) return '';
+                        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                    }
+
+                    // const username = getParameterByName('username');
+                    // Retrieve username from URL or localStorage
+                    let username = getParameterByName('username');
+                        if (username) {
+                            localStorage.setItem('username', username);
+                        } else {
+                            username = localStorage.getItem('username');
+                        }
+
+
+                    var initials = username.substring(0, 3).toUpperCase();
+                    let password = getParameterByName('password');
+
+                    document.getElementById('userCircle').innerText = initials;                    
+                </script>
+
+
+                <style>.circle { width: 40px;  /* 圆圈的宽度 */ height: 40px;  /* 圆圈的高度 */ background-color: #0374889f;  /* 圆圈的背景颜色 */ color: white;  /* 字母颜色 */ border-radius: 50%;  /* 使其变成圆形 */ display: flex; align-items: center; justify-content: center; font-weight: bold;  /* 字母加粗 */ position: absolute;  /* 使用绝对定位 */ right: 10px;  /* 距离右侧边缘的距离 */ top: 10px;  /* 距离顶部边缘的距离 */ }</style>
+            </nav>
+        </header>
+
+        <section style="padding-top: 120px; padding-bottom: 120px; min-height: 300px; color: #ffffff; background-size: cover; background-repeat: no-repeat; background-image: linear-gradient(90deg, #536976, #292E49);" id="section_home" data-pg-ia-scene='{"dir":"a","s":"custom","s_t":"start","s_s":"end","e_t":"end","e_s":"start","l":[{"a":{"l":[{"t":"","l":[{"t":"tween","p":0,"d":1,"l":{"pgia":{"play":"HideContent"}}},{"t":"tween","p":1,"d":8,"l":{"pgia":{"play":"ShowContent","once":1}}},{"t":"tween","p":9,"d":1,"l":{"pgia":{"play":"HideContent"}}}]}]},"p":"scroll","sc_dir":"up_down","rep":"true"}],"smooth":"0"}' data-pg-ia='{"l":[{"name":"ShowContent","trg":"no","a":{"l":[{"t":"h1,h2,p","l":[{"t":"tween","p":0,"d":1,"s":0.5,"l":{"autoAlpha":1}}]}],"desc":"Customize this animation to show the content when the section comes into view."}},{"name":"HideContent","trg":"no","a":{"l":[{"t":"","l":[]}],"desc":"Customize to hide the content when the section goes out of view. Not needed if you want to reveal the content only once. If hiding content, also remove Show Once in Scroll Scene animation."}}]}' data-pg-ia-apply="$section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="display-3" data-pg-ia-hide style="text-align: center;">LiYing ProteinCraft</h1>
+                        <p class="lead" data-pg-ia-hide style="text-align: center;">An integrated bioinformatics computing platform</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+    
+            .content {
+                height: 2000px;
+                padding: 20px;
+                background-color: #f4f4f4;
+            }
+    
+            a.back-to-top {
+                display: flex;
+                align-items: center;
+                position: fixed;
+                top: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                text-decoration: none;
+                background-color: white;
+                color: black;
+                padding: 10px 15px;
+                border-radius: 50px;
+                font-size: 16px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+                z-index: 9999; 
+            }
+    
+            a.back-to-top.show {
+                opacity: 1;
+                visibility: visible;
+            }
+    
+            a.back-to-top:hover {
+                background-color: #f0f0f0;
+            }
+    
+            a.back-to-top svg {
+                fill: black;
+                margin-right: 5px;
+                width: 20px;
+                height: 20px;
+            }
+    
+            a.back-to-top span {
+                font-size: 14px;
+            }
+        </style>
+        <a href="#" class="back-to-top" id="backToTop">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+            </svg>
+            <span>Back to top</span>
+        </a>
+        <script>
+            let backToTopBtn = document.getElementById("backToTop");
+            let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+            window.addEventListener("scroll", function () {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+                // Show the button when scrolling up, and hide when scrolling down
+                if (scrollTop < lastScrollTop && scrollTop > 100) {
+                    backToTopBtn.classList.add("show");
+                } else {
+                    backToTopBtn.classList.remove("show");
+                }
+    
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Ensure no negative value
+            });
+    
+            // Scroll to top functionality
+            backToTopBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Enables smooth scrolling
+                });
+            });
+        </script>
+
+        <section id="section_submit" style="background-color: #ffffff;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide="">Submit</h2>
+                        <p data-pg-ia-hide="">Please refer to the <a href="#section_examples">Examples section</a> first, and then submit your job here:</p>
+                        <div class="container font-weight-bold" style="width: 80%;background-color: #f0f8ff; height: 500px;border: 2px solid #ccc" ;" data-empty-placeholder">
+                            
+                            <form id="infoForm" role="form" class="">
+                                <div class="form-group">
+                                    <label for="formInput1" class="font-weight-bold">Name:</label>                                 
+                                    <input type="text" class="form-control" id="formInput1"  name="name" placeholder="Enter name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formInput2" class="font-weight-bold">Job name:</label>                                 
+                                    <input type="text" class="form-control" id="formInput2"  name="jobName" placeholder="Enter job name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formInput3" class="font-weight-bold">Expected completion time:</label>                                 
+                                    <input type="text" class="form-control" id="formInput3"  name="completionTime" placeholder="Enter time" required>
+                                </div>
+                                <div class="form-group"> 
+                                    <label for="formInput4" class="font-weight-bold">Brief description:</label>
+                                    <input type="text" class="form-control" id="formInput4"  name="description" placeholder="Enter description" required> 
+                                </div>
+                                <label for="exampleInputFile" class="">Please submit a PPT format file containing detailed task information:</label>
+                                <div class="form-group">
+                                    <p class=""> 
+                                        <label for="exampleInputFile" class="font-weight-light">File input</label> 
+                                        <input type="file" id="exampleInputFile" name="pptFile" class="" required> 
+                                    </p>
+                                    <button type="submit" class="btn btn-primary float-left">Submit</button>
+                                </div>                                 
+                            </form>
+                
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const form = document.querySelector('form');
+                                    form.addEventListener('submit', function (event) {
+                                        event.preventDefault();
+                                        
+                                        // 检查所有必填字段是否已填写
+                                        const inputs = form.querySelectorAll('input[required]');
+                                        let allFilled = true;
+                                        inputs.forEach(input => {
+                                            if (!input.value) {
+                                                allFilled = false;
+                                                alert(`${input.placeholder} is required.`);
+                                            }
+                                        });
+                            
+                                        if (!allFilled) {
+                                            return; // 如果有字段未填写，阻止提交
+                                        }
+                            
+                                        const formData = new FormData(form);
+                                        fetch('/submit', {
+                                            method: 'POST',
+                                            body: formData
+                                        })
+                                        .then(response => response.text())
+                                        .then(data => {
+                                            alert(data);
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                        });
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section data-pg-class-style="section" id="section_server" style="background-color: #5e7471;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide style="color: #faf9f9;">Server</h2>
+                        <p data-pg-ia-hide  style="color: #faf9f9;">July 20th, the number of tasks we can still undertake is <b>3</b> and we will update the timing information once a week.</p>
+                        <table class="table" id="infoTable" style="color: #faf9f9;"> 
+                            <thead> 
+                                <tr> 
+                                    <th>User</th> 
+                                    <th>Submitter</th> 
+                                    <th>Job name</th> 
+                                    <th>Submit time</th> 
+                                    <th>Status</th>
+                                </tr>                                 
+                            </thead>
+                            <tbody></tbody>                                                         
+                        </table>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                // 在页面加载时从服务器获取数据
+                                fetch('/getData')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const table = document.getElementById('infoTable');
+                                        const tbody = table.querySelector('tbody');
+                                        
+                                        data.forEach(item => {
+                                            const row = document.createElement('tr');
+                                            row.innerHTML = `
+                                                <td>${item.username}</td>
+                                                <td>${item.name}</td>
+                                                <td>${item.jobName}</td>
+                                                <td>${item.time}</td>
+                                                <td>${item.status}</td>
+                                            `;
+                                            tbody.appendChild(row);
+                                        });
+                                        
+                                        table.style.display = 'table'; // 显示表格
+                                    });
+                            });
+
+                            document.getElementById('infoForm').addEventListener('submit', function(event) {
+                                event.preventDefault(); // 阻止默认提交行为
+
+                                // 获取表单数据
+                                const formData = new FormData(this);
+                                const data = {};
+                                formData.forEach((value, key) => {
+                                    data[key] = value;
+                                });
+
+                                // 获取当前时间
+                                const now = new Date();
+                                const timeString = now.toLocaleString(); // 可以根据需要格式化时间
+
+                                // 发送数据到服务器
+                                fetch('/submit', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        username: username, // 
+                                        name: data.name,
+                                        jobName: data.jobName,
+                                        completionTime: data.completionTime,
+                                        description: data.description,
+                                        time: timeString,
+                                        status: 'pending'
+                                    })
+                                }).then(response => response.text())
+                                .then(text => {
+                                    console.log(text); // 处理服务器响应
+                                    
+                                    // 更新表格显示
+                                    const table = document.getElementById('infoTable');
+                                    const tbody = table.querySelector('tbody');
+
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+                                        <td>${username}</td> 
+                                        <td>${data.name}</td>
+                                        <td>${data.jobName}</td>
+                                        <td>${timeString}</td>
+                                        <td>pending</td>
+                                    `;
+                                    tbody.appendChild(row);
+
+                                    table.style.display = 'table'; // 显示表格
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="section_share">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-11 col-md-4">
+                        <h2>Share</h2> 
+                        <div id="section_chat"></div>
+                        <div id="input_area">
+                            <input type="text" id="chat_input" placeholder="输入文字..." onkeydown="if(event.key === 'Enter') sendMessage()">
+                            <button onclick="sendMessage()">send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function loadMessages() {
+                    fetch('/messages')
+                        .then(response => response.json())
+                        .then(messages => {
+                            const chatSection = document.getElementById('section_chat');
+                            messages.forEach(message => {
+                                const newMessage = document.createElement('p');
+                                newMessage.textContent = message;
+                                chatSection.appendChild(newMessage);
+                            });
+                            chatSection.scrollTop = chatSection.scrollHeight;
+                        });
+                }
+
+                function sendMessage() {
+                    const input = document.getElementById('chat_input');
+                    const message = input.value;
+                    if (message.trim() !== "") {
+                        const chatSection = document.getElementById('section_chat');
+                        const newMessage = document.createElement('p');
+                        newMessage.textContent = username + ': ' + message;
+                        chatSection.appendChild(newMessage);
+                        input.value = '';
+                        chatSection.scrollTop = chatSection.scrollHeight; // 自动滚动到最下方
+                        // 发送消息到服务器
+                        fetch('/messages', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ message: username + ': ' + message }),
+                        });
+                    }
+                }
+                // 页面加载时加载聊天记录
+                window.onload = loadMessages;
+            </script>
+            <style>#section_chat { background-color: #f5fff7; padding: 20px; height: 300px; overflow-y: auto; margin-bottom: 20px; border: 1px solid #ccc; } #input_area { display: flex; } #input_area input { flex: 1; padding: 10px; border: 1px solid #ccc; } #input_area button { padding: 10px; border: 1px solid #ccc; background-color: #007bff; color: white; cursor: pointer; }</style>             
+        </section>
+        
+        <section id="section_examples" style="background-color: #eeeeee;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h2 data-pg-ia-hide="" class="">Examples&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</h2>
+                    </div>
+                </div>
+                <style>
+                    .download-link{
+                        text-decoration: none;
+                        color: #007bff;
+                        font-size: 18px;
+                    }
+            
+                    .download-link:hover {
+                        text-decoration: underline;
+                    }
+                    a.downloaded {
+                        color: #598bb4; /* 设置下载后的链接颜色 */
+                    }
+                </style>
+                <ul>
+                    <li>
+                        <a>You must fill in all the information in the form to submit the task. The "Name" is the "Submitter". You can use the acronym of your real name. Other sections should also be filled in according to the actual situation.</a><br><br>
+                        <a>You can check the table in the <a href="#section_server">Server section</a> to understand the format of the submitted results, and observe the status. Satus consists of three stages, pending、 running and complete.</a>
+                    </li><br>
+                    <li>
+                        <a>Please download these PPTs to see how to use a PPT template to submit project details:</a><br>
+                        <a href="/download/Submit_PPT_template_for_enzyme.pptx" class="download-link">Download Submit_PPT_template_for_enzyme</a>
+                    </li><br>
+                    <li>
+                        <a>Please download these PPTs to see how we plan to build the bioinformatics computing platform:</a><br>
+                        <a href="/download/LyBioCompute.pptx" class="download-link">Download LyBioCompute</a><br>
+                        <a href="/download/LyBioCompute_map.pptx" class="download-link">Download LyBioCompute_map</a>
+                    </li>
+                </ul>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        // 获取所有下载链接
+                        const downloadLinks = document.querySelectorAll('a.download-link');
+                        downloadLinks.forEach(link => {
+                            link.addEventListener('click', (event) => {
+                                // 使用 setTimeout 来模拟文件下载
+                                setTimeout(() => {
+                                    // 修改链接的样式
+                                    link.classList.add('downloaded');
+                                }, 100); // 延迟时间可以根据需要调整
+                            });
+                        });
+                    });
+                </script>
+                <img class="img-fluid m-0 p-0 w-1000 w-auto" src="biomap.png" alt="">
+                
+            </div>
+        </section>
+
+        <section id="section_video">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Video</h2>
+                        <video controls width="100%">
+                            <source src="m.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class=" bg-dark pb-3 pt-3 text-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">Created by LiYing Company in 2024. Enjoy!</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="#" class="btn btn-secondary btn-sm" id="backToTopBtn">Back to Top</a>
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var backToTopBtn = document.querySelector('#backToTopBtn');
+                    backToTopBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+            </script>
+        </footer>
+
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pgia/lib/pgia.js"></script>
+    </body>
+</html>

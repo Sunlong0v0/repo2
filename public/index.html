@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>LYBio</title>
+        <link rel="icon" href="icon.png" type="image/png">
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <script>/* Pinegrow Interactions, do not remove */ try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id')?document.documentElement.hasAttribute('data-pg-mobile'):(screen.width<1000&&screen.height<1000)){pgcss+='html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}';}else{pgcss+='html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}';}style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}</script>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body data-pg-ia-scene='{"smooth":"0","s":"whole","s_t":"top","s_s":"top","e_t":"bottom","e_s":"bottom","pint":"#section4","snap_sel":"section","snap_durmax":"0.5","pag":"e","pag_t":"section","pag_i":"nav .nav-item a","pag_pa":"MakeActive,PlayMoveTile","pag_tc":"55"}' style="padding-top: 55px;">
+        <header class="bg-white" data-pg-dyn-id="did_0">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <style>
+                    @keyframes colorChangeForward {
+                        0% { color: rgb(19, 149, 209); }
+                        100% { color: black; }
+                    }
+                    @keyframes colorChangeBackward {
+                        0% { color: black; }
+                        100% { color: rgb(19, 149, 209); }
+                    }
+                    .color-change-forward {
+                        animation: colorChangeForward 1.5s forwards;
+                    }
+                    .color-change-backward {
+                        animation: colorChangeBackward 1.5s forwards;
+                    }
+                </style>
+                <a class="navbar-brand" href="#" id="lybio" style="font-style: normal; font-weight: bold;">LYBio</a>
+                <script>
+                    let isForward = false;
+                    document.getElementById('lybio').addEventListener('click', function() {
+                        if (isForward) {
+                            this.classList.add('color-change-forward');
+                            this.classList.remove('color-change-backward');
+                        } else {
+                            this.classList.add('color-change-backward');
+                            this.classList.remove('color-change-forward');
+                        }
+                        isForward = !isForward;
+                    });
+                </script>
+
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-pg-ia='{"l":[{"name":"PositionTileOnOpen","trg":"click","a":{"l":[{"t":"^nav|.active-tile","l":[{"t":"set","p":0,"d":0,"l":{"autoAlpha":0}},{"t":"tween","p":0.4,"d":0.15,"l":{"pgia":{"play":"MoveTile"}}},{"t":"tween","p":0.55,"d":0.13,"l":{"autoAlpha":1}}]}]},"pdef":"true","rcr":"true"}]}'>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="active-tile" data-pg-ia="{&quot;l&quot;:[{&quot;name&quot;:&quot;MoveTile&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;$.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.28,&quot;l&quot;:{&quot;pgPos&quot;:{&quot;pos&quot;:&quot;center&quot;,&quot;width&quot;:104,&quot;tsel&quot;:&quot;^nav|.nav-item.active a&quot;}}}]}]},&quot;rstr&quot;:&quot;true&quot;}]}"></div>
+                    <ul class="navbar-nav" style="z-index: 1; position: relative;">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section0" data-pg-ia="{&quot;l&quot;:[{&quot;name&quot;:&quot;ScrollOnClick&quot;,&quot;trg&quot;:&quot;click&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^body&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.59,&quot;l&quot;:{&quot;scrollTo&quot;:{&quot;dest&quot;:&quot;${target.href}&quot;}}},{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.59,&quot;l&quot;:{&quot;history.push&quot;:&quot;${target.href}&quot;},&quot;m&quot;:true}]},{&quot;t&quot;:&quot;&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.3,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MakeActive&quot;}}}]},{&quot;t&quot;:&quot;^nav|.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.3,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MoveTile&quot;}}}]}]},&quot;pdef&quot;:&quot;true&quot;},{&quot;name&quot;:&quot;MakeActive&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^nav|.nav-item.active&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;set&quot;,&quot;p&quot;:0,&quot;d&quot;:0,&quot;l&quot;:{&quot;class.remove&quot;:&quot;active&quot;}}]},{&quot;t&quot;:&quot;^.nav-item&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.05,&quot;l&quot;:{&quot;class.add&quot;:&quot;active&quot;}}]},{&quot;t&quot;:&quot;this&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.5,&quot;l&quot;:{&quot;color&quot;:&quot;#f500db&quot;}}],&quot;m&quot;:true}]},&quot;rcr&quot;:&quot;true&quot;},{&quot;name&quot;:&quot;PlayMoveTile&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^nav|.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0.1,&quot;d&quot;:0.4,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MoveTile&quot;}}}]}]},&quot;rstr&quot;:&quot;true&quot;}]}" data-pg-ia-apply="^nav|a[href^=&quot;#&quot;]">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_note">Note</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section_about">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="navbar-brand text-info" href="signIn.html" style="font-size: 16px; font-weight: bold;">Sign in</a>
+                <a class="navbar-brand text-info" href="signUp.html" style="font-size: 16px; font-weight: bold;">Sign up</a>
+            </nav>
+        </header>
+
+        <section style="padding: 0; min-height: 100vh; color: #ffffff; background-size: cover; background-repeat: no-repeat;" id="section0">
+            <div class="container-fluid" style="padding: 0;">
+                <div class="row">
+                    <div class="col-md-12" style="position: relative; height: 100vh; overflow: hidden;">
+                        <video id="backgroundVideo" autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
+                            <source src="craft.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div id="text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #ffffff; font-size: 28px;"></div>
+                        <div id="arrow" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); font-size: 200px; opacity: 0; animation: bounce 1s infinite; display: none;">
+                            <div style="border: solid white; border-width: 0 5px 5px 0; display: inline-block; padding: 5px; transform: rotate(45deg); margin-top: 5px;"></div>
+                        </div>
+                        
+                        <style>
+                        @keyframes bounce {
+                            0%, 100% { transform: translateY(0); }
+                            50% { transform: translateY(10px); }
+                        }
+                        </style>
+                        
+                        <script>
+                        const text = "Dive into the World of Protein Innovation!";
+                        let index = 0;
+                        
+                        function type() {
+                            if (index < text.length) {
+                                document.getElementById("text").innerHTML += text.charAt(index);
+                                index++;
+                                setTimeout(type,50); // 调整速度
+                            } else {
+                                const arrow = document.getElementById("arrow");
+                                arrow.style.opacity = 1; // 字打完后显示箭头
+                                arrow.style.display = "block"; // 显示箭头
+                            }
+                        }
+                        
+                        window.onload = function() {
+                            setTimeout(type, 3000); // 5000毫秒 = 5秒
+                            document.getElementById("arrow").onclick = function() {
+                                window.scrollBy(0, window.innerHeight); // 向下滚动
+                            };
+                        };
+                        </script>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section style="padding-top: 120px; padding-bottom: 120px; min-height: 300px; color: #ffffff; background-size: cover; background-repeat: no-repeat; background-image: linear-gradient(90deg, #a8a5be, #b6d7eb);" id="titleSection" data-pg-ia-scene='{"dir":"a","s":"custom","s_t":"start","s_s":"end","e_t":"end","e_s":"start","l":[{"a":{"l":[{"t":"","l":[{"t":"tween","p":0,"d":1,"l":{"pgia":{"play":"HideContent"}}},{"t":"tween","p":1,"d":8,"l":{"pgia":{"play":"ShowContent","once":1}}},{"t":"tween","p":9,"d":1,"l":{"pgia":{"play":"HideContent"}}}]}]},"p":"scroll","sc_dir":"up_down","rep":"true"}],"smooth":"0"}' data-pg-ia='{"l":[{"name":"ShowContent","trg":"no","a":{"l":[{"t":"h1,h2,p","l":[{"t":"tween","p":0,"d":1,"s":0.5,"l":{"autoAlpha":1}}]}],"desc":"Customize this animation to show the content when the section comes into view."}},{"name":"HideContent","trg":"no","a":{"l":[{"t":"","l":[]}],"desc":"Customize to hide the content when the section goes out of view. Not needed if you want to reveal the content only once. If hiding content, also remove Show Once in Scroll Scene animation."}}]}' data-pg-ia-apply="$section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="display-3" data-pg-ia-hide style="text-align: center;">LiYing ProteinCraft</h1>
+                        <p class="lead" data-pg-ia-hide style="text-align: center;">An integrated bioinformatics computing platform</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <script>
+            document.getElementById('backgroundVideo').addEventListener('click', function() {
+                // 切换到标题界面
+                document.getElementById('titleSection').scrollIntoView({ behavior: 'smooth' });
+            });
+        </script>
+        
+        
+
+        <style>.shadow-text { color: #96aac2; text-shadow: 0.25px 0.25px 0.5px rgba(159, 157, 253, 0.925); }</style>
+        <section id="section_note" style="background: #f4f4f4; padding: 40px 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <h2 data-pg-ia-hide="">Note</h2>
+                        <div class="note-box" style="width: 80%; max-width: 800px; height: 400px; margin: 0 auto; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background: #fff; overflow-y: auto;">
+                            <p id="note-content" class="shadow-text" style="font-size: 1.1rem; color: #0b3a37;"></p>
+                        </div>                         
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('notes.txt')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('note-content').innerText = data;
+                    })
+                    .catch(error => console.error('Error loading the file:', error));
+            });
+        </script>
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Bootstrap Carousel Example</title>
+            </head>
+            <body>
+                <section id="imageSlider" class="carousel slide" data-ride="carousel" data-interval="4000">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 text-center">
+                            <!-- 这里是预览图的位置 -->
+                        </div>
+                        <div class="col-md-8">
+                            <div class="carousel-inner" id="carouselItems">
+                                <!-- 动态生成的轮播项将在这里显示 -->
+                            </div>
+                            <a class="carousel-control-prev" href="#imageSlider" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+                            <a class="carousel-control-next" href="#imageSlider" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+                        </div>
+                    </div>
+                </section>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <script>
+            // 图片文件夹路径
+            var picturesFolder = 'pictures/';
+        
+            // 图片文件名列表（手动管理）
+            var images = ['1.png', '2.png', '3.png', '4.png']; 
+        
+            // 初始化轮播
+            function initializeCarousel(images) {
+                var carouselItems = '';
+                for (var i = 0; i < images.length; i++) {
+                    var imagePath = picturesFolder + images[i];
+                    if (images[i] === '4.png') { // 设置初始图像为 '4.png'
+                        carouselItems += '<div class="carousel-item active">';
+                    } else {
+                        carouselItems += '<div class="carousel-item">';
+                    }
+                    carouselItems += '<img src="' + imagePath + '" class="d-block w-100" alt="Slide ' + (i + 1) + '">';
+                    carouselItems += '</div>';
+                }
+                document.getElementById('carouselItems').innerHTML = carouselItems;
+        
+                // 初始化轮播
+                $('.carousel').carousel();
+            }
+        
+            // 调用初始化函数
+            initializeCarousel(images);
+        </script>
+            </body>
+        </html>
+        <section id="section_about" style="background-color: #eeeeee;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide="">About</h2>
+                        <p data-pg-ia-hide="" class="text-justify">Our computing platform is based on molecular dynamics simulation, machine learning and other methods to achieve research on biomolecules (like proteins).</p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                        <p data-pg-ia-hide="" class="text-justify">Feel free to email us for any questions.</p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"> 
+                <a href="#"> </a> 
+            </div>
+            <div class="col-md-3"> 
+                <a href="#"> </a> 
+            </div>
+        </section>
+        <footer class=" bg-dark pb-3 pt-3 text-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">Created by LiYing Company in 2024. Enjoy!</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="#" class="btn btn-secondary btn-sm" id="backToTopBtn">Back to Top</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var backToTopBtn = document.querySelector('#backToTopBtn');
+                backToTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pgia/lib/pgia.js"></script>
+    </body>
+</html>

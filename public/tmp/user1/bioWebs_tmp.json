@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "name": "PyTorch",
+    "description": "深度学习工具",
+    "url": "https://pytorch.org/get-started/locally/"
+  },
+  {
+    "id": "2",
+    "name": "MOE",
+    "description": "MOE学习教程",
+    "url": "https://www.chemcomp.com/moe/help/2022/index_tut.html"
+  },
+  {
+    "id": "3",
+    "name": "ollama",
+    "description": "本网站所使用的chat语言模型",
+    "url": "https://github.com/ollama/ollama"
+  },
+  {
+    "id": "4",
+    "name": "PDB",
+    "description": "蛋白质数据库",
+    "url": "https://www.rcsb.org/"
+  },
+  {
+    "id": "5",
+    "name": "Linux-Ubuntu/Centos7/9",
+    "description": "生信学习第一步、无推荐网站",
+    "url": "-"
+  },
+  {
+    "id": "6",
+    "name": "Python",
+    "description": "生信学习第二步、主流科学计算编程语言、无推荐网站",
+    "url": "-"
+  },
+  {
+    "id": "7",
+    "name": "conda",
+    "description": "生信学习第三步、python包管理器（也可以学习pip）",
+    "url": "https://anaconda.org/anaconda/conda"
+  },
+  {
+    "id": "8",
+    "name": "Biopython",
+    "description": "生信学习第四步、基于python的生信计算工具",
+    "url": "https://biopython-cn.readthedocs.io/zh-cn/latest/"
+  },
+  {
+    "id": "9",
+    "name": "Rosetta/PyRosetta",
+    "description": "生信学习第四步、生信计算套件/基于python的生信计算工具",
+    "url": "https://www.pyrosetta.org/"
+  },
+  {
+    "id": "10",
+    "name": "GROMACS",
+    "description": "分子动力学模拟工具",
+    "url": "http://www.mdtutorials.com/gmx/"
+  },
+  {
+    "id": "11",
+    "name": "AMBER",
+    "description": "分子动力学模拟工具",
+    "url": "https://ambermd.org/tutorials/"
+  }
+]

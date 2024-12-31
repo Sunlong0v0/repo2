@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Blank Template for Bootstrap</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <script>/* Pinegrow Interactions, do not remove */ try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id')?document.documentElement.hasAttribute('data-pg-mobile'):(screen.width<1000&&screen.height<1000)){pgcss+='html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}';}else{pgcss+='html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}';}style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}</script>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body data-pg-ia-scene='{"smooth":"0","s":"whole","s_t":"top","s_s":"top","e_t":"bottom","e_s":"bottom","pint":"#section4","snap_sel":"section","snap_durmax":"0.5","pag":"e","pag_t":"section","pag_i":"nav .nav-item a","pag_pa":"MakeActive,PlayMoveTile","pag_tc":"55"}' style="padding-top: 55px;">
+        <header class="bg-white" data-pg-dyn-id="did_0">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#" style="font-style: normal; font-weight: bold;">LYBio</a><a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-pg-ia='{"l":[{"name":"PositionTileOnOpen","trg":"click","a":{"l":[{"t":"^nav|.active-tile","l":[{"t":"set","p":0,"d":0,"l":{"autoAlpha":0}},{"t":"tween","p":0.4,"d":0.15,"l":{"pgia":{"play":"MoveTile"}}},{"t":"tween","p":0.55,"d":0.13,"l":{"autoAlpha":1}}]}]},"pdef":"true","rcr":"true"}]}'><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="active-tile" data-pg-ia="{&quot;l&quot;:[{&quot;name&quot;:&quot;MoveTile&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;$.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.28,&quot;l&quot;:{&quot;pgPos&quot;:{&quot;pos&quot;:&quot;center&quot;,&quot;width&quot;:104,&quot;tsel&quot;:&quot;^nav|.nav-item.active a&quot;}}}]}]},&quot;rstr&quot;:&quot;true&quot;}]}"></div>
+                    <ul class="navbar-nav" style="z-index: 1; position: relative;">
+                        <li class="nav-item"><a class="nav-link" href="#hero" data-pg-ia="{&quot;l&quot;:[{&quot;name&quot;:&quot;ScrollOnClick&quot;,&quot;trg&quot;:&quot;click&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^body&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.59,&quot;l&quot;:{&quot;scrollTo&quot;:{&quot;dest&quot;:&quot;${target.href}&quot;}}},{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.59,&quot;l&quot;:{&quot;history.push&quot;:&quot;${target.href}&quot;},&quot;m&quot;:true}]},{&quot;t&quot;:&quot;&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.3,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MakeActive&quot;}}}]},{&quot;t&quot;:&quot;^nav|.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.3,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MoveTile&quot;}}}]}]},&quot;pdef&quot;:&quot;true&quot;},{&quot;name&quot;:&quot;MakeActive&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^nav|.nav-item.active&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;set&quot;,&quot;p&quot;:0,&quot;d&quot;:0,&quot;l&quot;:{&quot;class.remove&quot;:&quot;active&quot;}}]},{&quot;t&quot;:&quot;^.nav-item&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.05,&quot;l&quot;:{&quot;class.add&quot;:&quot;active&quot;}}]},{&quot;t&quot;:&quot;this&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0,&quot;d&quot;:0.5,&quot;l&quot;:{&quot;color&quot;:&quot;#f500db&quot;}}],&quot;m&quot;:true}]},&quot;rcr&quot;:&quot;true&quot;},{&quot;name&quot;:&quot;PlayMoveTile&quot;,&quot;trg&quot;:&quot;no&quot;,&quot;a&quot;:{&quot;l&quot;:[{&quot;t&quot;:&quot;^nav|.active-tile&quot;,&quot;l&quot;:[{&quot;t&quot;:&quot;tween&quot;,&quot;p&quot;:0.1,&quot;d&quot;:0.4,&quot;l&quot;:{&quot;pgia&quot;:{&quot;play&quot;:&quot;MoveTile&quot;}}}]}]},&quot;rstr&quot;:&quot;true&quot;}]}" data-pg-ia-apply="^nav|a[href^=&quot;#&quot;]">Home</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#section1">&nbsp; note</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#section2">submit</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#section3">server</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#section4">share</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section5">examples</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#section6">about</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-body" href="tools.html">tools</a>
+                        </li>
+                        <li class="nav-item">
+</li>
+                    </ul>
+                </div><a class="navbar-brand text-info" href="login.html" style="font-size: 16px; font-weight: bold;">Login</a>
+            </nav>
+        </header>
+        <section style="padding-top: 120px; padding-bottom: 120px; min-height: 300px; color: #ffffff; background-size: cover; background-repeat: no-repeat; background-image: linear-gradient(90deg, #536976, #292E49);" id="hero" data-pg-ia-scene='{"dir":"a","s":"custom","s_t":"start","s_s":"end","e_t":"end","e_s":"start","l":[{"a":{"l":[{"t":"","l":[{"t":"tween","p":0,"d":1,"l":{"pgia":{"play":"HideContent"}}},{"t":"tween","p":1,"d":8,"l":{"pgia":{"play":"ShowContent","once":1}}},{"t":"tween","p":9,"d":1,"l":{"pgia":{"play":"HideContent"}}}]}]},"p":"scroll","sc_dir":"up_down","rep":"true"}],"smooth":"0"}' data-pg-ia='{"l":[{"name":"ShowContent","trg":"no","a":{"l":[{"t":"h1,h2,p","l":[{"t":"tween","p":0,"d":1,"s":0.5,"l":{"autoAlpha":1}}]}],"desc":"Customize this animation to show the content when the section comes into view."}},{"name":"HideContent","trg":"no","a":{"l":[{"t":"","l":[]}],"desc":"Customize to hide the content when the section goes out of view. Not needed if you want to reveal the content only once. If hiding content, also remove Show Once in Scroll Scene animation."}}]}' data-pg-ia-apply="$section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="display-3" data-pg-ia-hide style="text-align: center;">Liying BioCompute Platform</h1>
+                        <p class="lead" data-pg-ia-hide style="text-align: center;">An integrated bioinformatics computing platform</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-4">
+                        <h3>Note</h3> 
+                        <p>New news will occasionally appear here：</p>
+                        <div class="container" style="width: 80%; height: 500px; #f0f0f0;border: 2px solid #ccc" ;" data-empty-placeholder">
+                            <p>在这里加入--年月日时分</p>
+                            <p><span style="font-size: 1rem;" class="">这里实现登录后就可以填写修改这里的信息</span></p>
+                            <!-- <div id="datetime">
+                                <script>
+                                setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);
+                                </script>
+                            </div> -->
+                        </div>                         
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section2" style="background-color: #eeeeee;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide="">Submit</h2>
+                        <p data-pg-ia-hide="">Please submit your jobs here：</p>
+                        <div class="container font-weight-bold" style="width: 80%;background-color: #f0f8ff; height: 500px; #f0f0f0;border: 2px solid #ccc" ;" data-empty-placeholder">
+                            <div></div>
+                            <div class="form-group">
+                                <label for="formInput8" class="font-weight-bold">Name：
+</label>                                 
+                                <input type="text" class="form-control" id="formInput8" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput8" class="font-weight-bold">Job name：
+</label>                                 
+                                <input type="text" class="form-control" id="formInput8" placeholder="Enter name">
+                            </div><b class="">Expected completion time:</b>
+                            <input type="text" class="form-control" id="formInput9" placeholder="Enter name">
+                            <p class=""></p>
+                            <p class=""></p>
+                            <p class=""></p>
+                            <div class="form-group"> 
+                                <label for="formInput10" class="font-weight-bold">Brief description:</label>
+                                <input type="text" class="form-control" id="formInput10" placeholder="Enter name"> 
+                            </div>
+                            <label for="exampleInputFile" class="">Please submit a ppt format file containing detailed task information:</label>
+                            <form role="form" class="">
+                                <div class="form-group">
+                                    <p class=""><label for="exampleInputFile" class="font-weight-light">File input</label> <input type="file" id="exampleInputFile" class=""></p>
+                                    <button type="submit" class="btn btn-primary float-left">Submit</button>
+                                </div>                                 
+                            </form>
+                        </div>
+                        <p data-pg-ia-hide="" style="width: 100%; height: 30px; text-align: center;" class="text-info">Please pay attention to the examples provided in the following sections ...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section data-pg-class-style="section" id="section3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide>Server</h2>
+                        <p data-pg-ia-hide class="text-justify">The running jobs is：</p>
+                        <p data-pg-ia-hide class="text-justify">1、</p>
+                        <p data-pg-ia-hide class="text-justify">2、</p>
+                        <p data-pg-ia-hide class="text-justify">The completed jobs is：</p>
+                        <p data-pg-ia-hide class="text-justify">1、</p>
+                        <p data-pg-ia-hide class="text-justify">2、</p>
+                        <p data-pg-ia-hide class="text-justify"></p>
+                        <p data-pg-ia-hide class="text-justify"></p>
+                        <p data-pg-ia-hide class="text-justify text-primary">July 20th, the number of tasks we can still undertake is 3, and we will update the timing information once a week.</p>
+                        <table class="table"> 
+                            <thead> 
+                                <tr> 
+                                    <th>#</th> 
+                                    <th>First Name</th> 
+                                    <th>Last Name</th> 
+                                    <th>Username</th> 
+                                </tr>                                 
+                            </thead>                             
+                            <tbody> 
+                                <tr> 
+                                    <th scope="row">1</th> 
+                                    <td>Mark</td> 
+                                    <td>Otto</td> 
+                                    <td>@mdo</td> 
+                                </tr>                                 
+                                <tr> 
+                                    <th scope="row">2</th> 
+                                    <td>Jacob</td> 
+                                    <td>Thornton</td> 
+                                    <td>@fat</td> 
+                                </tr>                                 
+                                <tr> 
+                                    <th scope="row">3</th> 
+                                    <td>Larry</td> 
+                                    <td>the Bird</td> 
+                                    <td>@twitter</td> 
+                                </tr>                                 
+                            </tbody>                             
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section4" style="background-color: #eeeeee;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Share</h3> 
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h2 data-pg-ia-hide="" class="">Examples&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</h2>
+                        <p data-pg-ia-hide="" class="text-justify">1、protein - protein predicting</p>
+                        <p data-pg-ia-hide="" class="text-justify">2、protein - ligands docking</p>
+                        <p data-pg-ia-hide="" class="text-justify">3、</p>
+                    </div>
+                    <img class="img-fluid m-0 p-0 w-1000 w-auto" src="protein.png" alt="">
+                </div>
+            </div>
+        </section>
+        <section id="section6" style="background-color: #eeeeee;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <h2 data-pg-ia-hide="">About</h2>
+                        <p data-pg-ia-hide="" class="text-justify">Our computing platform is based on molecular dynamics simulation, machine learning and other methods to achieve research on biomolecules (like proteins).</p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                        <p data-pg-ia-hide="" class="text-justify">Feel free to email us for any questions.</p>
+                        <p data-pg-ia-hide="" class="text-justify"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"> <a href="#"> </a> 
+            </div>
+            <div class="col-md-3"> <a href="#"> </a> 
+            </div>
+            <div class="container">
+                <p data-pg-ia-hide class="font-weight-bold text-justify text-primary">This is our workfolw:</p>
+                <img class="w-100 img-thumbnail" src="map.png" alt="">
+            </div>
+        </section>
+        <footer class=" bg-dark pb-3 pt-3 text-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">Created by LiYing Company in 2024. Enjoy!</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pgia/lib/pgia.js"></script>
+    </body>
+</html>

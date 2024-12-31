@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superuser Management</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+        h1 { text-align: center; color: #333; }
+        form { display: flex; flex-direction: column; }
+        label { margin-bottom: 5px; color: #555; }
+        input, select, button { margin-bottom: 10px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background-color: #28a745; color: white; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        .message { text-align: center; margin-top: 20px; }
+        .user-list, .data-table { margin-top: 20px; }
+        .user-list ul, .data-table ul { list-style-type: none; padding: 0; }
+        .user-list li, .data-table li { padding: 5px; border-bottom: 1px solid #ccc; }
+        .data-table input { width: 100px; }
+        .data-table button { background-color: #dc3545; }
+        .data-table button:hover { background-color: #c82333; }
+        .save-button {
+            background-color: #28a745; 
+            color: white; 
+            cursor: pointer; 
+            padding: 10px 0; /* 上下 padding 保持一致 */
+            font-size: 16px; 
+            border: none; /* 去除默认边框 */
+            border-radius: 5px;
+            width: 100%; /* 拉满宽度 */
+            box-sizing: border-box; /* 确保 padding 和边框包含在宽度计算中 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Superuser Management</h1>
+        <form id="manageUserForm">
+            <div class="user-list" id="userList">
+                <h3>Existing Users</h3>
+                <ul id="userListContent"></ul>
+            </div>
+            <label for="action">Action</label>
+            <select id="action" required>
+                <option value="add">Add User</option>
+                <option value="delete">Delete User</option>
+                <option value="update">Update Password</option>
+            </select>
+
+            <label for="targetUser">Target Username</label>
+            <input type="text" id="targetUser" placeholder="Username" required>
+
+            <label for="newPassword">New Password (if applicable)</label>
+            <input type="password" id="newPassword" placeholder="New Password">
+
+            <button type="submit">Execute</button>
+        </form>
+        <div class="message" id="message"></div>
+
+        <div class="data-table" id="dataTable">
+            <h3>Job Status</h3>
+            <ul id="dataTableContent"></ul>
+            <form id="updateStatusForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Username" required>
+
+                <label for="jobName">Job Name</label>
+                <input type="text" id="jobName" placeholder="Job Name" required>
+
+                <label for="status">New Status</label>
+                <select id="status" required>
+                    <option value="pending">Pending</option>
+                    <option value="running">Running</option>
+                    <option value="complete">Complete</option>
+                </select>
+
+                <button type="submit">Update Status</button>
+            </form>
+        </div>
+
+        <div class="notes-container">
+            <h3>Notes</h3>
+            <textarea id="notesContent" rows="10" style="width: 100%; padding: 10px; font-size: 16px;"></textarea>
+            <button id="saveNotesButton" class="save-button">Save Notes</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 请求获取用户列表
+            fetch('/superuser/users')
+                .then(response => response.json())
+                .then(data => {
+                    const userListContent = document.getElementById('userListContent');
+                    data.forEach(user => {
+                        const li = document.createElement('li');
+                        li.textContent = user;
+                        userListContent.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+            // 请求获取数据表格
+            fetch('/getData')
+                .then(response => response.json())
+                .then(data => {
+                    const dataTableContent = document.getElementById('dataTableContent');
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = `${item.username}-${item.jobName}-${item.status}`;
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.addEventListener('click', () => {
+                            deleteJob(item.username, item.jobName);
+                        });
+                        li.appendChild(deleteButton);
+                        dataTableContent.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+            // 处理用户管理表单提交
+            document.getElementById('manageUserForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const action = document.getElementById('action').value;
+                const targetUser = document.getElementById('targetUser').value;
+                const newPassword = document.getElementById('newPassword').value;
+                
+                const superUsername = 'spuser';
+                const superPassword = '2024';
+
+                fetch('/superuser/manage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        username: superUsername,
+                        password: superPassword,
+                        action,
+                        targetUser,
+                        newPassword 
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageDiv = document.getElementById('message');
+                    if (data.success) {
+                        messageDiv.textContent = 'Operation successful: ' + data.message;
+                        messageDiv.style.color = 'green';
+                        // 更新用户列表
+                        document.getElementById('userListContent').innerHTML = '';
+                        fetch('/superuser/users')
+                            .then(response => response.json())
+                            .then(users => {
+                                users.forEach(user => {
+                                    const li = document.createElement('li');
+                                    li.textContent = user;
+                                    document.getElementById('userListContent').appendChild(li);
+                                });
+                            });
+                    } else {
+                        messageDiv.textContent = 'Operation failed: ' + data.message;
+                        messageDiv.style.color = 'red';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('message').textContent = 'An error occurred. Please try again later.';
+                });
+            });
+
+            // 处理状态更新表单提交
+            document.getElementById('updateStatusForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const jobName = document.getElementById('jobName').value;
+                const status = document.getElementById('status').value;
+
+                fetch('/updateStatus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, jobName, newStatus: status }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageDiv = document.getElementById('message');
+                    if (data.success) {
+                        messageDiv.textContent = 'Status updated successfully';
+                        messageDiv.style.color = 'green';
+                        // 更新数据表格
+                        document.getElementById('dataTableContent').innerHTML = '';
+                        fetch('/getData')
+                            .then(response => response.json())
+                            .then(items => {
+                                items.forEach(item => {
+                                    const li = document.createElement('li');
+                                    li.textContent = `${item.username}-${item.jobName}-${item.status}`;
+                                    const deleteButton = document.createElement('button');
+                                    deleteButton.textContent = 'Delete';
+                                    deleteButton.addEventListener('click', () => {
+                                        deleteJob(item.username, item.jobName);
+                                    });
+                                    li.appendChild(deleteButton);
+                                    document.getElementById('dataTableContent').appendChild(li);
+                                });
+                            });
+                    } else {
+                        messageDiv.textContent = 'Status update failed: ' + data.message;
+                        messageDiv.style.color = 'red';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('message').textContent = 'An error occurred. Please try again later.';
+                });
+            });
+
+            // 删除 job 条目
+            function deleteJob(username, jobName) {
+                fetch('/deleteJob', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, jobName }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageDiv = document.getElementById('message');
+                    if (data.success) {
+                        messageDiv.textContent = 'Job deleted successfully';
+                        messageDiv.style.color = 'green';
+                        // 更新数据表格
+                        document.getElementById('dataTableContent').innerHTML = '';
+                        fetch('/getData')
+                            .then(response => response.json())
+                            .then(items => {
+                                items.forEach(item => {
+                                    const li = document.createElement('li');
+                                    li.textContent = `${item.username}-${item.jobName}-${item.status}`;
+                                    const deleteButton = document.createElement('button');
+                                    deleteButton.textContent = 'Delete';
+                                    deleteButton.addEventListener('click', () => {
+                                        deleteJob(item.username, item.jobName);
+                                    });
+                                    li.appendChild(deleteButton);
+                                    document.getElementById('dataTableContent').appendChild(li);
+                                });
+                            });
+                    } else {
+                        messageDiv.textContent = 'Job deletion failed: ' + data.message;
+                        messageDiv.style.color = 'red';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('message').textContent = 'An error occurred. Please try again later.';
+                });
+            }
+
+            // 读取 notes.txt 文件
+            fetch('/notes')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('notesContent').value = data.content;
+                    } else {
+                        console.error('Error loading notes:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+
+            // 保存 notes.txt 文件
+            document.getElementById('saveNotesButton').addEventListener('click', () => {
+                const notesContent = document.getElementById('notesContent').value;
+                
+                fetch('/notes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ content: notesContent }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageDiv = document.getElementById('message');
+                    if (data.success) {
+                        messageDiv.textContent = 'Notes updated successfully';
+                        messageDiv.style.color = 'green';
+                    } else {
+                        messageDiv.textContent = 'Failed to update notes: ' + data.message;
+                        messageDiv.style.color = 'red';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('message').textContent = 'An error occurred. Please try again later.';
+                });
+            });
+        });
+    </script>
+    <div class="terminal">
+        <a class="nav-link" href="terminal.html">&lt;-terminal</a>
+    </div>
+</body>
+</html>

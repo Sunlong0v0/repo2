@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; }
+        html { height: 100%; }
+        body { height: 100%; }
+        .container { height: 100%; background-image: linear-gradient(to right, #fbc2eb, #a6c1ee); }
+        .register-wrapper { background-color: #fff; width: 358px; height: 588px; border-radius: 15px; padding: 0 50px; position: relative; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .header { font-size: 38px; font-weight: bold; text-align: center; line-height: 200px; }
+        .input-item { display: block; width: 100%; margin-bottom: 20px; border: 0; padding: 10px; border-bottom: 1px solid rgb(128, 125, 125); font-size: 15px; outline: none; }
+        .btn {
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            margin-top: 40px;
+            background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-position 0.5s;
+            background-size: 200% 200%;
+            background-position: 0% 50%;
+        }
+        .btn:hover {
+        background-position: 100% 50%;
+        }        
+        .input-item::placeholder { text-transform: uppercase; }
+        .msg { text-align: center; line-height: 88px; }
+        a { text-decoration-line: none; color: #abc1ee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="register-wrapper">
+            <div class="header">Sign up</div>
+            <form id="registerForm">
+                <input type="text" id="newUsername" placeholder="username" class="input-item">
+                <input type="password" id="newPassword" placeholder="password" class="input-item">
+                <button class="btn" type="submit">Sign up</button>
+            </form>
+            <div class="msg">
+                Already have an account? <a href="signIn.html">Sign in</a>
+            </div>
+            <a class="nav-link" href="index.html">&lt;-Back</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('registerForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const username = document.getElementById('newUsername').value;
+                const password = document.getElementById('newPassword').value;
+            
+                fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Registration successful!');
+                        window.location.href = 'signIn.html';
+                    } else {
+                        alert('Registration failed: ' + data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again later.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

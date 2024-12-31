@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=AR+One+Sans&display=swap">
+    <link rel="stylesheet" type="text/css" href="./scripts/pdbe-molstar.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        #myViewer {
+            width: 100%; /* 使用百分比以适应容器 */
+            height: 660px; /* 固定高度 */
+            margin: 20px 0; /* 上下边距 */
+        }
+        #output {
+            white-space: pre-wrap;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px auto; 
+            width: 80%; 
+            min-height: 120px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        #output2 {
+            white-space: pre-wrap;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px auto; 
+            width: 80%; 
+            min-height: 120px; 
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .container1 {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f3eff2;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 1000px; /* 固定容器高度 */
+        }
+
+        .container2 {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .container3 {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color:#f1f8e9 ;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .container4 {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff3e0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .input-container input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 70%;
+            height: 15px; /* 设置高度 */
+        }
+
+        .green_button {
+            display: block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .green_button:hover {
+            background-color: #45a049;
+        }
+
+        .gray_button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            color: rgb(3, 146, 3);
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .gray_button:hover {
+            background-color: #67f1a196;
+        }
+
+        .list {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 60px;
+        }
+
+        .list-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-item div {
+            display: flex;
+            align-items: center;
+        }
+
+        .list-item button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .list-item button:hover {
+            color: #4CAF50;
+        }
+
+        .add-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-button:hover {
+            background-color: #45a049;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        .modal-content input, .modal-content button {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .modal-content button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        #chat-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 400px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .user {
+            color: #007bff;
+        }
+
+        .bot {
+            color: #28a745;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        #status-message {
+        margin-top: 10px;
+        color: #a89393;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="navbar" style="text-align: left;">
+        <a class="nav-link" href="main.html" style="font-weight: bold; display: inline-block;">Back</a>
+        <a href="#section1">Protein Viwer</a>
+        <a href="#section2">Run Scripts</a>
+        <a href="#section3">Bioinformatics Websites</a>
+        <a href="#section4">Chat with AI</a>
+    </div>
+    
+    <div class="container1" id="section1">
+        <h1>Protein Viwer</h1>
+        <div class="container">
+
+
+        <div style="color: #836b6b; font-size: 20px">View a PDB structure</div><br>
+
+        <div class="input-container">
+            <input type="text" id="pdbInput" placeholder="Input PDB ID">
+            <button class="gray_button"  id="loadButton">Load</button>
+        </div>
+        
+
+        <div class="container">
+            <!-- Molstar container -->
+            <div id="myViewer"></div>
+            <script type="text/javascript" src="./scripts/pdbe-molstar-plugin.js"></script>
+
+
+            <script>
+                const viewerInstance = new PDBeMolstarPlugin();
+                const options = {
+                    moleculeId: '1cbs',
+                    bgColor: 'white',
+                    //visualStyle: { type:'cartoon', color: 'secondary-structure' },
+                    // customData: {
+                    //     url: 'https://alphafold.ebi.ac.uk/files/AF-O15552-F1-model_v1.cif',
+                    //     format: 'cif', // 文件格式
+                    //     binary: false, // 是否为二进制文件
+                    // },
+                    // selection: {
+                    //   data: [
+                    //     {
+                    //       struct_asym_id: 'A',
+                    //       start_residue_number: 1,
+                    //       end_residue_number: 20,
+                    //       color: '#ffff00',
+                    //     },
+                    //   ],
+                    //   nonSelectedColor: '#ddccbb',
+                    // },
+                    // hideStructure: ['het', 'water'],
+                    lighting: 'metallic', // flat | matte | glossy | metallic | plastic
+
+                    // INTERFACE
+                    hideControls: true,
+                    // hideCanvasControls: ['expand', 'selection', 'animation', 'controlToggle', 'controlInfo']
+                    sequencePanel: true,
+                    // pdbeLink: false,
+                    loadingOverlay: true,
+                    // expanded: true,
+                    landscape: true,
+                    reactive: true,
+                };
+                const viewerContainer = document.getElementById('myViewer');
+                viewerInstance.render(viewerContainer, options);
+                
+                document.getElementById('loadButton').addEventListener('click', () => {
+                    const pdbId = document.getElementById('pdbInput').value;
+                    options.moleculeId = pdbId;
+                    viewerInstance.render(viewerContainer, options);
+                });
+            </script>
+            
+        </div>
+
+    </div>
+
+    </div>
+
+    <div class="container2" id="section2">
+        <h1>Run Scripts</h1>
+        <div class="container">
+            <div style="color: #836b6b; font-size: 20px">Translate the nucleic acid sequence to amino acid sequence</div><br>
+            <div class="input-container">
+                <input type="text" id="input-text" placeholder="Enter your input sequence"/>
+                <button id="run-button" class="green_button">Run</button>
+            </div>
+            <pre id="output"></pre><br>
+        </div>
+    
+        <div class="container">
+            <div style="color: #836b6b; font-size: 20px">Search for PDB ID</div><br>
+            <div class="input-container">
+                <input type="text" id="input-text2" placeholder="Enter your input protein name"/>
+                <button id="run-button2" class="green_button">Run</button>
+            </div>
+            <pre id="output2"></pre><br>
+        </div>
+    
+    
+        <div class="container">
+            <div style="color: #836b6b; font-size: 20px">Relax the protein structure</div><br>
+            <form id="uploadFile" enctype="multipart/form-data">
+                <p class=""> 
+                    <label for="exampleInputFile" class="font-weight-light">File input</label> 
+                    <input type="file" id="exampleInputFile" name="pdbFile" class="" required> 
+                </p>
+                <button type="submit" class="gray_button">Submit</button>
+                <button type="button" id="run_script" class="gray_button" disabled>Run Script</button>
+                <button type="button" id="download_result" class="gray_button" disabled>Download Result</button>
+            </form>
+            <div id="status-message"></div>
+            <div id="script-status"></div>
+        </div>
+    
+            
+        </div>
+        <script>
+            document.getElementById('run-button').addEventListener('click', function() {
+                const inputText = document.getElementById('input-text').value;
+    
+                fetch('/run-script', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ input: inputText })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        fetchOutput();
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+    
+            function fetchOutput() {
+                fetch('/get-output')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('output').innerText = data.output;
+                    })
+                    .catch(error => console.error('Error fetching output:', error));
+            }
+        </script>
+        <script>
+            document.getElementById('run-button2').addEventListener('click', function() {
+                const inputText2 = document.getElementById('input-text2').value;
+    
+                fetch('/run-script2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ input: inputText2 })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        fetchOutput2();
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+            function fetchOutput2() {
+                fetch('/get-output2')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('output2').innerText = data.output2;
+                    })
+                    .catch(error => console.error('Error fetching output:', error));
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('uploadFile');
+                const statusMessage = document.getElementById('status-message');
+                const scriptStatus = document.getElementById('script-status');
+                const runScriptButton = document.getElementById('run_script');
+                const downloadButton = document.getElementById('download_result');
+    
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+    
+                    fetch('/submitPDB', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        statusMessage.textContent = data;
+                        runScriptButton.disabled = false; // 提交成功后启用 "Run Script" 按钮
+                        downloadButton.disabled = true; // 提交成功后禁用 "Download Result" 按钮
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+    
+                runScriptButton.addEventListener('click', function () {
+                    const pdbFileName = document.getElementById('exampleInputFile').files[0].name;
+                    if (pdbFileName) {
+                        scriptStatus.textContent = 'Script running...';
+    
+                        fetch('/run-script3', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ pdbFileName })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            scriptStatus.textContent = 'Complete!';
+                            statusMessage.textContent = data.message;
+                            downloadButton.disabled = false; // 脚本执行完成后启用 "Download Result" 按钮
+                            // 可以根据需要添加其他逻辑，如显示成功消息或者处理输出
+                        })
+                        .catch(error => {
+                            scriptStatus.textContent = 'Error occurred during script execution.';
+                            console.error('Error:', error);
+                        });
+                    } else {
+                        statusMessage.textContent = 'Please upload a file first.';
+                    }
+                });
+    
+                downloadButton.addEventListener('click', function () {
+                    const pdbFileName1 = document.getElementById('exampleInputFile').files[0].name;
+                    const pdbFileName = pdbFileName1.slice(0, -4); // 去掉后缀 .pdb
+                    if (pdbFileName) {
+                        fetch(`/run-script4/${pdbFileName}`)
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.blob();
+                                } else {
+                                    throw new Error('Network response was not ok.');
+                                }
+                            })
+                            .then(blob => {
+                                const url = window.URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.href = url;
+                                a.download = `${pdbFileName}_0001.pdb`;
+                                document.body.appendChild(a);
+                                a.click();
+                                a.remove();
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                statusMessage.textContent = 'Error downloading file.';
+                            });
+                    } else {
+                        statusMessage.textContent = 'Please upload a file first.';
+                    }
+                });;
+            });
+        </script>
+    
+        <div class="container3" id="section3">
+            <h1>Bioinformatics Websites</h1>
+            <div class="input-container">
+                <input type="text" id="searchItem" placeholder="Find items">
+                <button class="green_button" onclick="searchItem()">Search</button>
+            </div>
+            <ul id="list" class="list">
+                <!-- 列表项将通过 JavaScript 动态添加 -->
+            </ul>
+            <button class="add-button" onclick="openModal()">+</button>
+        </div>
+        <script>
+            async function fetchData(query = '') {
+                try {
+                    const response = await fetch('/getData_Web' + (query ? `?query=${encodeURIComponent(query)}` : ''));
+                    if (!response.ok) throw new Error('网络错误');
+                    const data = await response.json();
+                    const list = document.getElementById('list');
+                    list.innerHTML = '';
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+                        li.className = 'list-item';
+                        li.innerHTML = `
+                            <span><span style="color: green; font-weight: bold">${item.name}</span>  -  ${item.description}</span>
+                            <div>
+                                <button onclick="editItem('${item.id}')">✏️</button>
+                                <button onclick="deleteItem('${item.id}')">❌</button>
+                                <button onclick="viewPage('${item.url}')">🌐</button>
+                            </div>
+                        `;
+                        list.appendChild(li);
+                    });
+                } catch (error) {
+                    console.error('获取数据失败:', error);
+                    alert('获取数据失败，请检查控制台获取更多信息。');
+                }
+            }
+    
+            async function searchItem() {
+                const input = document.getElementById('searchItem');
+                const query = input.value.trim();
+                fetchData(query);
+            }
+    
+            async function editItem(id) {
+                try {
+                    const newName = prompt('输入新名称:');
+                    if (!newName) return;
+    
+                    const newDescription = prompt('输入新的描述:');
+                    if (newDescription === null) return; // 取消操作
+    
+                    const newUrl = prompt('输入新的 URL:');
+                    if (newUrl === null) return; // 取消操作
+    
+                    await fetch('/editItem', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id, name: newName, description: newDescription, url: newUrl })
+                    });
+                    fetchData();
+                } catch (error) {
+                    console.error('编辑条目失败:', error);
+                    alert('编辑条目失败，请检查控制台获取更多信息。');
+                }
+            }
+    
+            async function deleteItem(id) {
+                try {
+                    if (!confirm('确定删除吗？')) return;
+                    await fetch('/deleteItem', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id })
+                    });
+                    fetchData();
+                } catch (error) {
+                    console.error('删除条目失败:', error);
+                    alert('删除条目失败，请检查控制台获取更多信息。');
+                }
+            }
+    
+            function viewPage(url) {
+                window.open(url, '_blank');
+            }
+    
+            function openModal() {
+                document.getElementById('addModal').style.display = 'flex';
+            }
+    
+            function closeModal() {
+                document.getElementById('addModal').style.display = 'none';
+            }
+    
+            async function addItem() {
+                const name = document.getElementById('newName').value.trim();
+                const description = document.getElementById('newDescription').value.trim();
+                const url = document.getElementById('newUrl').value.trim();
+    
+                if (!name || !description || !url) {
+                    alert('所有字段都必须填写');
+                    return;
+                }
+    
+                try {
+                    await fetch('/addItem', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, description, url })
+                    });
+                    closeModal();
+                    fetchData();
+                } catch (error) {
+                    console.error('添加条目失败:', error);
+                    alert('添加条目失败，请检查控制台获取更多信息。');
+                }
+            }
+    
+            fetchData();
+        </script>
+    
+    
+        <div class="container4" id="section4">
+            <h1>Chat with AI</h1>
+            <div id="chat-box"></div>
+            <textarea id="input" placeholder="Type your message here..."></textarea>
+            <button class="green_button" onclick="clearHistory()">Clear History</button>
+            <button class="green_button" onclick="sendMessage()">Send</button>
+            <ul id="list" class="list">
+                <!-- 列表项将通过 JavaScript 动态添加 -->
+            </ul>
+        </div>
+    
+    
+        <!-- Modal for adding new item -->
+        <div id="addModal" class="modal">
+            <div class="modal-content">
+                <h2>添加新条目</h2>
+                <input type="text" id="newName" placeholder="输入名称">
+                <input type="text" id="newDescription" placeholder="输入描述">
+                <input type="text" id="newUrl" placeholder="输入网页 URL">
+                <button onclick="addItem()">添加</button>
+                <button onclick="closeModal()">取消</button>
+            </div>
+        </div>
+            
+        <script>
+            async function sendMessage() {
+              const input = document.getElementById('input').value;
+              const chatBox = document.getElementById('chat-box');
+              chatBox.innerHTML += `<div class="message user">You: ${input}</div>`;
+              document.getElementById('input').value = ''; // 清空输入框
+        
+              try {
+                const response = await fetch('/api/chat', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    model: 'llama3.1',
+                    messages: [{ role: 'user', content: input }]
+                  })
+                });
+        
+                if (!response.body) {
+                  throw new Error('No response body');
+                }
+        
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+                let completeResponse = '';
+        
+                while (true) {
+                  const { done, value } = await reader.read();
+                  if (done) break;
+        
+                  buffer += decoder.decode(value, { stream: true });
+        
+                  // 处理完整的消息
+                  let lineEndIndex;
+                  while ((lineEndIndex = buffer.indexOf('\n')) !== -1) {
+                    const line = buffer.substring(0, lineEndIndex);
+                    buffer = buffer.substring(lineEndIndex + 1);
+        
+                    // 解析并显示完整消息
+                    try {
+                      const json = JSON.parse(line);
+                      if (json.message && json.message.content) {
+                        completeResponse += json.message.content;
+                      }
+                    } catch (e) {
+                      console.error('JSON parse error:', e);
+                      chatBox.innerHTML += '<div class="message bot">Error parsing response</div>';
+                      chatBox.scrollTop = chatBox.scrollHeight;
+                      return;
+                    }
+                  }
+                }
+        
+                // 显示完整响应
+                if (completeResponse) {
+                  chatBox.innerHTML += `<div class="message bot">Bot: ${completeResponse}</div>`;
+                } else {
+                  chatBox.innerHTML += `<div class="message bot">Bot: No response available or unexpected response structure.</div>`;
+                }
+                chatBox.scrollTop = chatBox.scrollHeight; // 自动滚动到最新消息
+        
+              } catch (error) {
+                console.error('Error:', error);
+                chatBox.innerHTML += `<div class="message bot">Error occurred: ${error.message}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+              }
+            }
+        
+            async function clearHistory() {
+              try {
+                const response = await fetch('/api/clear', { method: 'POST' });
+                const result = await response.json();
+                const chatBox = document.getElementById('chat-box');
+                chatBox.innerHTML += `<div class="message bot">${result.message}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+              } catch (error) {
+                console.error('Error clearing history:', error);
+              }
+            }
+        
+            document.getElementById('input').addEventListener('keypress', function(event) {
+              if (event.key === 'Enter') {
+                event.preventDefault(); // 阻止默认的回车换行行为
+                sendMessage();
+              }
+            });
+        </script>
+    
+</body>
+</html>
